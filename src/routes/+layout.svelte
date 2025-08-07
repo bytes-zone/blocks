@@ -15,5 +15,7 @@
 
 <JazzSvelteProvider {sync} AccountSchema={Account}>
   <Header />
-  {@render children?.()}
+  <main class="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8">
+    {@render children?.()}
+  </main>
 </JazzSvelteProvider>
