@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { MyAccount } from '$lib/schema';
+	import { Account } from '$lib/schema';
 	import { AccountCoState, usePasskeyAuth } from 'jazz-tools/svelte';
 
 	let { appName = 'Blocks' } = $props();
-	const { logOut } = new AccountCoState(MyAccount);
+	const { logOut } = new AccountCoState(Account);
 
 	const { current, state } = $derived(usePasskeyAuth({ appName }));
 

@@ -1,13 +1,38 @@
-// src/lib/schema.ts
-import { Account, coField, Profile } from 'jazz-tools';
+import { co, Group } from 'jazz-tools';
+import { Task } from './task';
 
-export class MyProfile extends Profile {
-	name = coField.string;
-	counter = coField.number; // This will be publically visible
-}
+export const Profile = co.profile();
 
-export class MyAccount extends Account {
-	profile = coField.ref(MyProfile);
+export const Root = co.map({
+	inbox: co.list(Task),
+	collection: co.list(Task)
+});
 
-	// ...
-}
+export const Account = co.account({
+  profile: Profile,
+  root: Root,
+}).withMigration((account) => {
+  if (account.root === undefined) {
+    const group = Group.create()
+
+    account.root = Root.create(
+      {
+        inbox: [],
+        collection: []
+      },
+      group,
+    )
+  }
+
+  if (account.profile === undefined) {
+    const group = Group.create();
+    group.addMember("everyone", "reader");
+
+    account.profile = Profile.create(
+      {
+        name: "",
+      },
+      group,
+    )
+  }
+})
