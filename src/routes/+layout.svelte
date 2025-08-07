@@ -1,7 +1,10 @@
 <script lang="ts">
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import { JazzSvelteProvider } from 'jazz-tools/svelte';
+	import { MyAccount } from '$lib/schema';
 
+	let sync = { peer: 'wss://cloud.jazz.tools/?key=you@example.com' };
 	let { children } = $props();
 </script>
 
@@ -9,4 +12,6 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children?.()}
+<JazzSvelteProvider {sync} AccountSchema={MyAccount}>
+	{@render children?.()}
+</JazzSvelteProvider>
