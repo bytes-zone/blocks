@@ -3,7 +3,13 @@
 	import { AccountCoState, usePasskeyAuth } from 'jazz-tools/svelte';
 
 	let { appName = 'Blocks' } = $props();
-	const { logOut } = new AccountCoState(Account);
+	const account = new AccountCoState(Account, {
+      resolve: {
+        profile: true
+      }
+	});
+
+	let profile = $derived(account.current?.profile);
 
 	const { current, state } = $derived(usePasskeyAuth({ appName }));
 
@@ -34,9 +40,9 @@
 					Sign Up
 				</button>
 			{:else}
-				Howdy howdy howdy!
+				Hello {profile?.name || "Mysterious Stranger"}!
 
-				<button onclick={() => logOut()} type="button" class="btn hover:preset-tonal-primary">
+				<button onclick={() => account.logOut()} type="button" class="btn hover:preset-tonal-primary">
 					Log out
 				</button>
 			{/if}
