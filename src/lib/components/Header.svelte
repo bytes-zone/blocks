@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Account } from '$lib/schema';
   import { AccountCoState, usePasskeyAuth } from 'jazz-tools/svelte';
-  import ProfileEditor from './ProfileEditor.svelte';
 
   let { appName = 'Blocks' } = $props();
   const account = new AccountCoState(Account, {
