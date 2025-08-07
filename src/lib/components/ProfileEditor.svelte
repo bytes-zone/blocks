@@ -4,12 +4,15 @@
   const { profile }: { profile: Profile } = $props();
 </script>
 
-<form>
-  <label for="name">Name:</label>
-  <input
-    id="name"
-    type="text"
-    value={profile.name}
-    onchange={(ev) => (profile.name = ev.target?.value)}
-  />
+<form class="w-lg">
+  <label class="label">
+    <span class="label-text">Name</span>
+    <input
+      class="input"
+      placeholder="Kermit the Frog"
+      type="text"
+      value={profile.name}
+      onchange={(ev) => (profile.name = ev.target?.value)}
+    />
+  </label>
 </form>
