@@ -2,6 +2,7 @@ import { co, Group } from 'jazz-tools';
 import { Task } from './task';
 
 export const Profile = co.profile();
+export type Profile = co.loaded<typeof Profile>;
 
 export const Root = co.map({
   inbox: co.list(Task),
