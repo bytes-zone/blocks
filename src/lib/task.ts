@@ -2,7 +2,7 @@ import { co, z } from 'jazz-tools';
 
 export const Task = co.map({
   title: co.plainText(),
-  description: co.richText(),
+  notes: co.richText(),
 
   blocks: z.int().min(0),
 
