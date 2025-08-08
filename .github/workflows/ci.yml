@@ -25,11 +25,13 @@ jobs:
   test:
     name: Tests
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.54.0-noble
+      options: --user 1001
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
       - run: bun install
-      - run: bunx playwright install --with-deps
       - run: bun run test:unit --run
       - run: bun run test:e2e
       - uses: actions/upload-artifact@v4
