@@ -1,4 +1,5 @@
 <script lang="ts">
+  import TaskLine from '$lib/components/TaskLine.svelte';
   import { Account } from '$lib/schema';
   import { AccountCoState } from 'jazz-tools/svelte';
 
@@ -16,28 +17,9 @@
 </script>
 
 {#if inbox}
-  <table>
-    <thead>
-      <tr>
-        <th>Completed</th>
-        <th>Title</th>
-        <th>Notes</th>
-        <th>Wait</th>
-        <th>Due</th>
-        <th>ID</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each inbox as task (task.id)}
-        <tr>
-          <td>{task.completed}</td>
-          <td>{task.title}</td>
-          <td>{task.notes}</td>
-          <td>{task.wait}</td>
-          <td>{task.due}</td>
-          <td>{task.id}</td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+  <div class="flex flex-col gap-1">
+    {#each inbox as task (task.id)}
+      <TaskLine {task} />
+    {/each}
+  </div>
 {/if}
