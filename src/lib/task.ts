@@ -66,5 +66,5 @@ export function parseTask(
     }
   }
 
-  return { title, blocks, due, wait };
+  return { title: title.trim(), blocks, due, wait };
 }
