@@ -2,9 +2,26 @@
   import { Account } from '$lib/schema';
   import { AccountCoState, usePasskeyAuth } from 'jazz-tools/svelte';
   import { page } from '$app/state';
+  import QuickAdd from './QuickAdd.svelte';
+  import { createFromDraft, Task, type DraftTask } from '$lib/task';
 
   let { appName = 'Blocks' } = $props();
-  const account = new AccountCoState(Account);
+
+  const account = new AccountCoState(Account, {
+    resolve: {
+      root: {
+        inbox: {
+          $each: true,
+        },
+      },
+    },
+  });
+
+  const inbox = $derived(account.current?.root?.inbox);
+
+  function addTask(task: DraftTask) {
+    inbox?.push(createFromDraft(task));
+  }
 
   const { current, state } = $derived(usePasskeyAuth({ appName }));
 
@@ -21,14 +38,15 @@
 {/snippet}
 
 <header>
-  <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8">
-    <div class="lg:flex lg:gap-x-12">
+  <nav aria-label="Global" class="mx-auto flex max-w-7xl justify-between p-2 lg:px-8">
+    <div class="lg:flex lg:items-center lg:gap-x-6">
       {@render link('/', 'Home')}
+      {@render link('/inbox', `Inbox (${account.current?.root?.inbox?.length ?? 0})`)}
       {#if isAuthenticated}
-        {@render link('/account', 'Account')}
+        <QuickAdd {addTask} />
       {/if}
     </div>
-    <div class="lg:flex lg:flex-1 lg:justify-end">
+    <div class="lg:flex lg:items-center lg:justify-end lg:gap-x-6">
       {#if !isAuthenticated}
         <button
           onclick={() => current.logIn()}
@@ -46,6 +64,8 @@
           Sign Up
         </button>
       {:else}
+        {@render link('/account', 'Account')}
+
         <button
           onclick={() => account.logOut()}
           type="button"

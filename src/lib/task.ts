@@ -28,9 +28,9 @@ const dueRe = /(\s?\bdue:)(\w+)/g;
 
 const waitRe = /(\s?\bwait:)(\w+)/g;
 
-export function parseTask(
-  input: string,
-): Pick<Task, 'blocks' | 'due' | 'wait'> & { title: string } {
+export type DraftTask = Pick<Task, 'blocks' | 'due' | 'wait'> & { title: string };
+
+export function parseTask(input: string): DraftTask {
   let title = input;
 
   const rawBlocks = blocksRe.exec(title)?.[1];
@@ -67,4 +67,15 @@ export function parseTask(
   }
 
   return { title: title.trim(), blocks, due, wait };
+}
+
+export function createFromDraft(task: DraftTask): Task {
+  return Task.create(
+    Object.assign({}, task, {
+      notes: '',
+      completed: false,
+      children: [],
+      blockers: [],
+    }),
+  );
 }
