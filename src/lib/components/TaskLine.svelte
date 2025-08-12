@@ -24,7 +24,7 @@
 
   <span class="sr-only">{task.blocks} blocks</span>
   {#each { length: task.blocks }}
-    <div class="h-2 w-2 bg-surface-500"></div>
+    <div class="h-4 w-4 rounded-base bg-surface-500"></div>
   {/each}
 
   {@render dateTag('wait', task.wait)}
