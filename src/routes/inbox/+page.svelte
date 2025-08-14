@@ -1,5 +1,5 @@
 <script lang="ts">
-  import TaskLine from '$lib/components/TaskLine.svelte';
+  import TaskList from '$lib/components/TaskList.svelte';
   import { Account } from '$lib/schema';
   import { AccountCoState } from 'jazz-tools/svelte';
 
@@ -17,9 +17,5 @@
 </script>
 
 {#if inbox}
-  <div class="flex flex-col gap-1">
-    {#each inbox as task (task.id)}
-      <TaskLine {task} />
-    {/each}
-  </div>
+  <TaskList list={inbox} />
 {/if}
