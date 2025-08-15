@@ -8,10 +8,10 @@
 
 {#snippet row(task: Task, idx: number)}
   <tr>
-    <td style="padding-left: {idx * 2}em"
-      ><input type="checkbox" checked={task?.completed} />
-      {task.title}</td
-    >
+    <td style="padding-left: {idx * 2}em" class="flex items-center gap-2">
+      <input type="checkbox" checked={task?.completed} />
+      {task.title}
+    </td>
     <td>
       <Blocks planned={task.plannedBlocks} complete={task.completedBlocks} />
     </td>
