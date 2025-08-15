@@ -5,7 +5,8 @@ export const Task = co.map({
   title: co.plainText(),
   notes: co.richText(),
 
-  blocks: z.int().min(0),
+  plannedBlocks: z.int().min(0),
+  completedBlocks: z.int().min(0),
 
   due: z.optional(z.date()),
   wait: z.optional(z.date()),
@@ -28,15 +29,15 @@ const dueRe = /(\s?\bdue:)(\w+)/g;
 
 const waitRe = /(\s?\bwait:)(\w+)/g;
 
-export type DraftTask = Pick<Task, 'blocks' | 'due' | 'wait'> & { title: string };
+export type DraftTask = Pick<Task, 'plannedBlocks' | 'due' | 'wait'> & { title: string };
 
 export function parseTask(input: string): DraftTask {
   let title = input;
 
   const rawBlocks = blocksRe.exec(title)?.[1];
-  let blocks = 0;
+  let plannedBlocks = 0;
   if (rawBlocks) {
-    blocks = parseInt(rawBlocks, 10);
+    plannedBlocks = parseInt(rawBlocks, 10);
     title = title.replace(blocksRe, '');
   }
 
@@ -66,7 +67,7 @@ export function parseTask(input: string): DraftTask {
     }
   }
 
-  return { title: title.trim(), blocks, due, wait };
+  return { title: title.trim(), plannedBlocks, due, wait };
 }
 
 export function createFromDraft(task: DraftTask): Task {
@@ -74,6 +75,7 @@ export function createFromDraft(task: DraftTask): Task {
     Object.assign({}, task, {
       notes: '',
       completed: false,
+      completedBlocks: 0,
       children: [],
       blockers: [],
     }),

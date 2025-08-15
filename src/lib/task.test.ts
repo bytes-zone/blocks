@@ -12,7 +12,7 @@ describe('task parsing from string', () => {
   it('should parse blocks', () => {
     const task = parseTask('buy milk blocks:2');
 
-    expect(task.blocks).toEqual(2);
+    expect(task.plannedBlocks).toEqual(2);
   });
 
   it('should parse due date', () => {
