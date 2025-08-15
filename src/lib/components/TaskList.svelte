@@ -52,6 +52,10 @@
         {#if task}
           {@render row(task, 0)}
         {/if}
+      {:else}
+        <tr>
+          <td colspan="4" align="center">No tasks found! Try adding one above?</td>
+        </tr>
       {/each}
     </tbody>
   </table>
