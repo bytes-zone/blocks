@@ -8,5 +8,5 @@ test('quick-adding a task should send it to the inbox', async ({ page }) => {
 
   await page.getByText('Inbox (1)').click();
 
-  await expect(page.getByRole('cell', { name: 'Buy milk', exact: true })).toBeVisible();
+  await expect(page.getByRole('rowheader', { name: 'Buy milk', exact: true })).toBeVisible();
 });

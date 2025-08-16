@@ -16,11 +16,11 @@
         aria-label="Mark {task.completed ? 'incomplete' : 'complete'}"
       />
     </td>
-    <td>
+    <th scope="row">
       <span class="inline-flex items-center gap-2">
         {task.title}
       </span>
-    </td>
+    </th>
     <td>
       <Blocks planned={task.plannedBlocks} complete={task.completedBlocks} />
     </td>

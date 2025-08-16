@@ -12,7 +12,7 @@
       - row "Mark complete Buy milk planned 0 blocks, completed 0 Delete Buy milk":
         - cell "Mark complete":
           - checkbox "Mark complete"
-        - cell "Buy milk"
+        - rowheader "Buy milk"
         - cell "planned 0 blocks, completed 0"
         - cell
         - cell
@@ -22,7 +22,7 @@
       - row "Mark complete Wash the car planned 2 blocks, completed 0 Delete Wash the car":
         - cell "Mark complete":
           - checkbox "Mark complete"
-        - cell "Wash the car"
+        - rowheader "Wash the car"
         - cell "planned 2 blocks, completed 0"
         - cell
         - cell

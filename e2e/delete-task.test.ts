@@ -8,8 +8,8 @@ test('you should be able to delete a task', async ({ page }) => {
 
   await page.getByText('Inbox (1)').click();
 
-  await expect(page.getByRole('cell', { name: 'Buy milk', exact: true })).toBeVisible();
+  await expect(page.getByRole('rowheader', { name: 'Buy milk', exact: true })).toBeVisible();
 
   await page.getByTitle('Delete Buy milk').click();
-  await expect(page.getByRole('cell', { name: 'Buy milk' })).not.toBeVisible();
+  await expect(page.getByRole('rowheader', { name: 'Buy milk' })).not.toBeVisible();
 });
