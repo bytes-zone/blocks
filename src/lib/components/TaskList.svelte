@@ -28,6 +28,8 @@
           <ClockFading class="w-4" />
           {task.wait.toLocaleString()}
         </span>
+      {:else}
+        <span class="text-surface-400-600">No wait set</span>
       {/if}
     </td>
     <td>
@@ -36,6 +38,8 @@
           <ClockAlert class="w-4" />
           {task.due.toLocaleString()}
         </span>
+      {:else}
+        <span class="text-surface-400-600">No due date set</span>
       {/if}
     </td>
     <td>

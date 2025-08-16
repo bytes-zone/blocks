@@ -9,23 +9,23 @@
         - columnheader "Due"
         - columnheader "Actions"
     - rowgroup:
-      - row "Mark Buy milk complete Buy milk planned 0 blocks, completed 0 Delete Buy milk":
+      - row "Mark Buy milk complete Buy milk planned 0 blocks, completed 0 No wait set No due date set Delete Buy milk":
         - cell "Mark Buy milk complete":
           - checkbox "Mark Buy milk complete"
         - rowheader "Buy milk"
         - cell "planned 0 blocks, completed 0"
-        - cell
-        - cell
+        - cell "No wait set"
+        - cell "No due date set"
         - cell "Delete Buy milk":
           - button "Delete Buy milk":
             - img
-      - row "Mark Wash the car complete Wash the car planned 2 blocks, completed 0 Delete Wash the car":
+      - row "Mark Wash the car complete Wash the car planned 2 blocks, completed 0 No wait set No due date set Delete Wash the car":
         - cell "Mark Wash the car complete":
           - checkbox "Mark Wash the car complete"
         - rowheader "Wash the car"
         - cell "planned 2 blocks, completed 0"
-        - cell
-        - cell
+        - cell "No wait set"
+        - cell "No due date set"
         - cell "Delete Wash the car":
           - button "Delete Wash the car":
             - img
