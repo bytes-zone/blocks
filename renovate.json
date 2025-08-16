@@ -6,7 +6,18 @@
   },
   "packageRules": [
     {
-      "matchPackageNames": [".+"],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "pin",
+        "pinDigest",
+        "digest",
+        "lockFileMaintenance",
+        "rollback",
+        "bump",
+        "replacement"
+      ],
       "automerge": true,
       "automergeType": "branch"
     }
