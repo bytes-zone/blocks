@@ -37,7 +37,7 @@
     "globals": "16.3.0",
     "jazz-tools": "0.17.5",
     "playwright": "1.54.2",
-    "prettier": "3.4.2",
+    "prettier": "3.6.2",
     "prettier-plugin-svelte": "3.4.0",
     "prettier-plugin-tailwindcss": "0.6.14",
     "svelte": "5.38.1",
