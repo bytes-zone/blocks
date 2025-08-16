@@ -9,7 +9,7 @@
 
 {#snippet row(parent: co.loaded<co.List<typeof Task>>, task: Task, idx: number)}
   <tr>
-    <td style="padding-left: {idx * 2}em">
+    <td style="padding-left: {idx * 2}em" class="w-2">
       <input
         type="checkbox"
         checked={task?.completed}
