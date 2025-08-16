@@ -17,9 +17,7 @@
       />
     </td>
     <th scope="row">
-      <span class="inline-flex items-center gap-2">
-        {task.title}
-      </span>
+      {task.title}
     </th>
     <td>
       <Blocks planned={task.plannedBlocks} complete={task.completedBlocks} />
