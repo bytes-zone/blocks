@@ -1,28 +1,28 @@
 - main:
-    - table:
-        - rowgroup:
-            - row "Task Blocks Wait Due Actions":
-                - cell "Task"
-                - cell "Blocks"
-                - cell "Wait"
-                - cell "Due"
-                - cell "Actions"
-        - rowgroup:
-            - row "Buy milk planned 0 blocks, completed 0 Delete Buy milk":
-                - cell "Buy milk":
-                    - checkbox
-                - cell "planned 0 blocks, completed 0"
-                - cell
-                - cell
-                - cell "Delete Buy milk":
-                    - button "Delete Buy milk":
-                        - img
-            - row "Wash the car planned 2 blocks, completed 0 Delete Wash the car":
-                - cell "Wash the car":
-                    - checkbox
-                - cell "planned 2 blocks, completed 0"
-                - cell
-                - cell
-                - cell "Delete Wash the car":
-                    - button "Delete Wash the car":
-                        - img
+  - table:
+    - rowgroup:
+      - row "Task Blocks Wait Due Actions":
+        - columnheader "Task"
+        - columnheader "Blocks"
+        - columnheader "Wait"
+        - columnheader "Due"
+        - columnheader "Actions"
+    - rowgroup:
+      - row "Buy milk planned 0 blocks, completed 0 Delete Buy milk":
+        - cell "Buy milk":
+          - checkbox
+        - cell "planned 0 blocks, completed 0"
+        - cell
+        - cell
+        - cell "Delete Buy milk":
+          - button "Delete Buy milk":
+            - img
+      - row "Wash the car planned 2 blocks, completed 0 Delete Wash the car":
+        - cell "Wash the car":
+          - checkbox
+        - cell "planned 2 blocks, completed 0"
+        - cell
+        - cell
+        - cell "Delete Wash the car":
+          - button "Delete Wash the car":
+            - img

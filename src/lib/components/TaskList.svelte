@@ -57,11 +57,11 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Task</th>
-        <th>Blocks</th>
-        <th>Wait</th>
-        <th>Due</th>
-        <th>Actions</th>
+        <th scope="col">Task</th>
+        <th scope="col">Blocks</th>
+        <th scope="col">Wait</th>
+        <th scope="col">Due</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
