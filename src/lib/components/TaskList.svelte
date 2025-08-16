@@ -71,7 +71,7 @@
         {/if}
       {:else}
         <tr>
-          <td colspan="4" align="center">No tasks found! Try adding one above?</td>
+          <td colspan="5" align="center">No tasks found! Try adding one above?</td>
         </tr>
       {/each}
     </tbody>
