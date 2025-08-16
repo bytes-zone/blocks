@@ -2,12 +2,12 @@
   import type { Task } from '$lib/task';
   import { co } from 'jazz-tools';
   import Blocks from './Blocks.svelte';
-  import { ClockAlert, ClockFading } from '@lucide/svelte';
+  import { ClockAlert, ClockFading, Trash } from '@lucide/svelte';
 
   let { list }: { list: co.loaded<co.List<typeof Task>> } = $props();
 </script>
 
-{#snippet row(task: Task, idx: number)}
+{#snippet row(parent: co.loaded<co.List<typeof Task>>, task: Task, idx: number)}
   <tr>
     <td style="padding-left: {idx * 2}em">
       <span class="inline-flex items-center gap-2">
@@ -34,6 +34,22 @@
         </span>
       {/if}
     </td>
+    <td>
+      <button
+        type="button"
+        class="btn-icon preset-filled-error-50-950"
+        title="Delete {task.title}"
+        aria-label="Delete {task.title}"
+        onclick={() => {
+          let idx = parent.indexOf(task);
+          if (idx > -1) {
+            parent.splice(idx, 1);
+          }
+        }}
+      >
+        <Trash />
+      </button>
+    </td>
   </tr>
 {/snippet}
 
@@ -45,12 +61,13 @@
         <th>Blocks</th>
         <th>Wait</th>
         <th>Due</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       {#each list as task (task?.id)}
         {#if task}
-          {@render row(task, 0)}
+          {@render row(list, task, 0)}
         {/if}
       {:else}
         <tr>
