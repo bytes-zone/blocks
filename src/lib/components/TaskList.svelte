@@ -1,0 +1,69 @@
+<script lang="ts">
+  import type { Task } from '$lib/task';
+  import { co } from 'jazz-tools';
+  import Blocks from './Blocks.svelte';
+  import { ClockAlert, ClockFading } from '@lucide/svelte';
+
+  let { list }: { list: co.loaded<co.List<typeof Task>> } = $props();
+</script>
+
+{#snippet row(task: Task, idx: number)}
+  <tr>
+    <td style="padding-left: {idx * 2}em">
+      <span class="inline-flex items-center gap-2">
+        <input type="checkbox" checked={task?.completed} />
+        {task.title}
+      </span>
+    </td>
+    <td>
+      <Blocks planned={task.plannedBlocks} complete={task.completedBlocks} />
+    </td>
+    <td>
+      {#if task.wait}
+        <span class="inline-flex items-center gap-2">
+          <ClockFading class="w-4" />
+          {task.wait.toLocaleString()}
+        </span>
+      {/if}
+    </td>
+    <td>
+      {#if task.due}
+        <span class="inline-flex items-center gap-2">
+          <ClockAlert class="w-4" />
+          {task.due.toLocaleString()}
+        </span>
+      {/if}
+    </td>
+  </tr>
+{/snippet}
+
+<div class="table-wrap">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Blocks</th>
+        <th>Wait</th>
+        <th>Due</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each list as task (task?.id)}
+        {#if task}
+          {@render row(task, 0)}
+        {/if}
+      {:else}
+        <tr>
+          <td colspan="4" align="center">No tasks found! Try adding one above?</td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  thead,
+  tr {
+    border: 0;
+  }
+</style>

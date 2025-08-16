@@ -6,16 +6,16 @@
   const account = new AccountCoState(Account, {
     resolve: {
       root: {
-        collection: {
+        inbox: {
           $each: true,
         },
       },
     },
   });
 
-  const tasks = $derived(account.current?.root?.collection);
+  const inbox = $derived(account.current?.root?.inbox);
 </script>
 
-{#if tasks}
-  <TaskList list={tasks} />
+{#if inbox}
+  <TaskList list={inbox} />
 {/if}
