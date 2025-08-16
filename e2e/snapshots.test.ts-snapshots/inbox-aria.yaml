@@ -1,7 +1,8 @@
 - main:
   - table:
     - rowgroup:
-      - row "Task Blocks Wait Due Actions":
+      - row "Complete Task Blocks Wait Due Actions":
+        - columnheader "Complete"
         - columnheader "Task"
         - columnheader "Blocks"
         - columnheader "Wait"
@@ -9,8 +10,9 @@
         - columnheader "Actions"
     - rowgroup:
       - row "Buy milk planned 0 blocks, completed 0 Delete Buy milk":
-        - cell "Buy milk":
+        - cell:
           - checkbox
+        - cell "Buy milk"
         - cell "planned 0 blocks, completed 0"
         - cell
         - cell
@@ -18,8 +20,9 @@
           - button "Delete Buy milk":
             - img
       - row "Wash the car planned 2 blocks, completed 0 Delete Wash the car":
-        - cell "Wash the car":
+        - cell:
           - checkbox
+        - cell "Wash the car"
         - cell "planned 2 blocks, completed 0"
         - cell
         - cell

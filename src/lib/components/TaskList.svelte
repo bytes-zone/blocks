@@ -10,8 +10,10 @@
 {#snippet row(parent: co.loaded<co.List<typeof Task>>, task: Task, idx: number)}
   <tr>
     <td style="padding-left: {idx * 2}em">
+      <input type="checkbox" checked={task?.completed} />
+    </td>
+    <td>
       <span class="inline-flex items-center gap-2">
-        <input type="checkbox" checked={task?.completed} />
         {task.title}
       </span>
     </td>
@@ -57,6 +59,7 @@
   <table class="table">
     <thead>
       <tr>
+        <th scope="col"><span class="sr-only">Complete</span></th>
         <th scope="col">Task</th>
         <th scope="col">Blocks</th>
         <th scope="col">Wait</th>
