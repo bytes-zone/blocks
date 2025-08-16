@@ -42,9 +42,7 @@
     <div class="lg:flex lg:items-center lg:gap-x-6">
       {@render link('/', 'Home')}
       {@render link('/inbox', `Inbox (${account.current?.root?.inbox?.length ?? 0})`)}
-      {#if isAuthenticated}
-        <QuickAdd {addTask} />
-      {/if}
+      <QuickAdd {addTask} />
     </div>
     <div class="lg:flex lg:items-center lg:justify-end lg:gap-x-6">
       {#if !isAuthenticated}
