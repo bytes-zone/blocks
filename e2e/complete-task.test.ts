@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('quick-adding a task should send it to the inbox', async ({ page }) => {
+test('you should be able to complete a task', async ({ page }) => {
   await page.goto('/');
 
   await page.getByPlaceholder('What do you need to do?').fill('Buy milk');
@@ -8,5 +8,8 @@ test('quick-adding a task should send it to the inbox', async ({ page }) => {
 
   await page.getByText('Inbox (1)').click();
 
-  await expect(page.getByRole('rowheader', { name: 'Buy milk', exact: true })).toBeVisible();
+  const complete = page.getByLabel('Mark Buy milk complete');
+
+  await expect(complete).not.toBeChecked();
+  await complete.check();
 });

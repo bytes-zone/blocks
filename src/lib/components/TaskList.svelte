@@ -9,12 +9,17 @@
 
 {#snippet row(parent: co.loaded<co.List<typeof Task>>, task: Task, idx: number)}
   <tr>
-    <td style="padding-left: {idx * 2}em">
-      <span class="inline-flex items-center gap-2">
-        <input type="checkbox" checked={task?.completed} />
-        {task.title}
-      </span>
+    <td style="padding-left: {idx * 2}em" class="w-2">
+      <input
+        type="checkbox"
+        checked={task?.completed}
+        aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
+        onchange={(e) => (task.completed = e.currentTarget.checked)}
+      />
     </td>
+    <th scope="row">
+      {task.title}
+    </th>
     <td>
       <Blocks planned={task.plannedBlocks} complete={task.completedBlocks} />
     </td>
@@ -24,6 +29,8 @@
           <ClockFading class="w-4" />
           {task.wait.toLocaleString()}
         </span>
+      {:else}
+        <span class="text-surface-400-600">No wait set</span>
       {/if}
     </td>
     <td>
@@ -32,6 +39,8 @@
           <ClockAlert class="w-4" />
           {task.due.toLocaleString()}
         </span>
+      {:else}
+        <span class="text-surface-400-600">No due date set</span>
       {/if}
     </td>
     <td>
@@ -57,11 +66,12 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Task</th>
-        <th>Blocks</th>
-        <th>Wait</th>
-        <th>Due</th>
-        <th>Actions</th>
+        <th scope="col"><span class="sr-only">Complete</span></th>
+        <th scope="col">Task</th>
+        <th scope="col">Blocks</th>
+        <th scope="col">Wait</th>
+        <th scope="col">Due</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
