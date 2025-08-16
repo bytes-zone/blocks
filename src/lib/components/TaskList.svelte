@@ -14,6 +14,7 @@
         type="checkbox"
         checked={task?.completed}
         aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
+        onchange={(e) => (task.completed = e.currentTarget.checked)}
       />
     </td>
     <th scope="row">
