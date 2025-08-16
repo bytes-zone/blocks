@@ -13,7 +13,7 @@
       <input
         type="checkbox"
         checked={task?.completed}
-        aria-label="Mark {task.completed ? 'incomplete' : 'complete'}"
+        aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
       />
     </td>
     <th scope="row">
