@@ -21,6 +21,9 @@
   const buttonId = `${uid}-button`;
   const inputId = `${uid}-input`;
 
+  let buttonNode: HTMLButtonElement | null;
+  let inputNode: HTMLInputElement | null;
+
   let editing = $state(false);
 
   let draftValue = $state(value?.toLocaleString() || '');
@@ -28,15 +31,14 @@
   async function startEditing() {
     editing = true;
     await tick();
-    document.getElementById(inputId)?.focus();
+    inputNode?.focus();
   }
 
   async function submitForm(e: Event) {
     e.preventDefault();
     save();
     await tick();
-    document.getElementById(buttonId)?.focus();
-    console.log(document.activeElement);
+    buttonNode?.focus();
   }
 
   async function save() {
@@ -61,6 +63,7 @@
     id={buttonId}
     onclick={startEditing}
     hidden={editing}
+    bind:this={buttonNode}
   >
     {#if value}
       {@render present(value)}
@@ -92,6 +95,7 @@
     type="text"
     id={inputId}
     bind:value={draftValue}
+    bind:this={inputNode}
     onblur={save}
   />
 </form>
