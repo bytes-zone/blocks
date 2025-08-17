@@ -1,6 +1,7 @@
 <script lang="ts">
   import { tick, type Snippet } from 'svelte';
   import * as chrono from 'chrono-node';
+  import { CalendarOff } from '@lucide/svelte';
 
   let {
     label,
@@ -51,20 +52,38 @@
   }
 </script>
 
-<button
-  type="button"
-  aria-expanded={editing}
-  aria-controls={inputId}
-  id={buttonId}
-  onclick={startEditing}
-  hidden={editing}
->
+<div class="flex items-center gap-4">
+  <button
+    type="button"
+    class="flex"
+    aria-expanded={editing}
+    aria-controls={inputId}
+    id={buttonId}
+    onclick={startEditing}
+    hidden={editing}
+  >
+    {#if value}
+      {@render present(value)}
+    {:else}
+      {@render absent()}
+    {/if}
+  </button>
+
   {#if value}
-    {@render present(value)}
-  {:else}
-    {@render absent()}
+    <button
+      type="button"
+      class="btn-icon preset-filled-surface-100-900"
+      title="Clear {label}"
+      aria-label="Clear {label}"
+      onclick={() => {
+        draftValue = '';
+        save();
+      }}
+    >
+      <CalendarOff />
+    </button>
   {/if}
-</button>
+</div>
 
 <form onsubmit={submitForm} hidden={!editing}>
   <input

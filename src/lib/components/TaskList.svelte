@@ -25,7 +25,11 @@
       <Blocks planned={task.plannedBlocks} complete={task.completedBlocks} />
     </td>
     <td>
-      <DateEditor value={task.wait} update={(newValue: Date | undefined) => (task.wait = newValue)}>
+      <DateEditor
+        label="wait"
+        value={task.wait}
+        update={(newValue: Date | undefined) => (task.wait = newValue)}
+      >
         {#snippet absent()}
           <span class="text-surface-400-600">No wait set</span>
         {/snippet}
@@ -39,7 +43,11 @@
       </DateEditor>
     </td>
     <td>
-      <DateEditor value={task.due} update={(newValue: Date | undefined) => (task.due = newValue)}>
+      <DateEditor
+        label="due date"
+        value={task.due}
+        update={(newValue: Date | undefined) => (task.due = newValue)}
+      >
         {#snippet absent()}
           <span class="text-surface-400-600">No due date set</span>
         {/snippet}
