@@ -3,6 +3,7 @@
   import { co } from 'jazz-tools';
   import Blocks from './Blocks.svelte';
   import { ClockAlert, ClockFading, Trash } from '@lucide/svelte';
+  import DateEditor from './DateEditor.svelte';
 
   let { list }: { list: co.loaded<co.List<typeof Task>> } = $props();
 </script>
@@ -24,24 +25,32 @@
       <Blocks planned={task.plannedBlocks} complete={task.completedBlocks} />
     </td>
     <td>
-      {#if task.wait}
-        <span class="inline-flex items-center gap-2">
-          <ClockFading class="w-4" />
-          {task.wait.toLocaleString()}
-        </span>
-      {:else}
-        <span class="text-surface-400-600">No wait set</span>
-      {/if}
+      <DateEditor value={task.wait}>
+        {#snippet absent()}
+          <span class="text-surface-400-600">No wait set</span>
+        {/snippet}
+
+        {#snippet present(date: Date)}
+          <span class="inline-flex items-center gap-2">
+            <ClockFading class="w-4" />
+            {date.toLocaleString()}
+          </span>
+        {/snippet}
+      </DateEditor>
     </td>
     <td>
-      {#if task.due}
-        <span class="inline-flex items-center gap-2">
-          <ClockAlert class="w-4" />
-          {task.due.toLocaleString()}
-        </span>
-      {:else}
-        <span class="text-surface-400-600">No due date set</span>
-      {/if}
+      <DateEditor value={task.due}>
+        {#snippet absent()}
+          <span class="text-surface-400-600">No due date set</span>
+        {/snippet}
+
+        {#snippet present(date: Date)}
+          <span class="inline-flex items-center gap-2">
+            <ClockAlert class="w-4" />
+            {date.toLocaleString()}
+          </span>
+        {/snippet}
+      </DateEditor>
     </td>
     <td>
       <button
