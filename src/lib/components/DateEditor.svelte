@@ -87,7 +87,7 @@
 
 <form onsubmit={submitForm} hidden={!editing}>
   <input
-    aria-label="Edit {label}"
+    aria-label={label}
     class="input"
     type="text"
     id={inputId}
