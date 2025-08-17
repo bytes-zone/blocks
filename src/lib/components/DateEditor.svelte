@@ -18,7 +18,6 @@
   } = $props();
 
   const uid = $props.id();
-  const buttonId = `${uid}-button`;
   const inputId = `${uid}-input`;
 
   let buttonNode: HTMLButtonElement | null;
@@ -60,7 +59,6 @@
     class="flex"
     aria-expanded={editing}
     aria-controls={inputId}
-    id={buttonId}
     onclick={startEditing}
     hidden={editing}
     bind:this={buttonNode}
@@ -71,6 +69,18 @@
       {@render absent()}
     {/if}
   </button>
+
+  <form onsubmit={submitForm} hidden={!editing}>
+    <input
+      aria-label={label}
+      class="input"
+      type="text"
+      id={inputId}
+      bind:value={draftValue}
+      bind:this={inputNode}
+      onblur={save}
+    />
+  </form>
 
   {#if value}
     <button
@@ -87,15 +97,3 @@
     </button>
   {/if}
 </div>
-
-<form onsubmit={submitForm} hidden={!editing}>
-  <input
-    aria-label={label}
-    class="input"
-    type="text"
-    id={inputId}
-    bind:value={draftValue}
-    bind:this={inputNode}
-    onblur={save}
-  />
-</form>
