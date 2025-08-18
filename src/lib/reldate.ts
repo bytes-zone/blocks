@@ -4,8 +4,8 @@ const week_ms = 7 * day_ms;
 const month_ms = 30 * day_ms;
 const year_ms = 365 * day_ms;
 
-export function reldate(date: Date): string {
-  const formatter = new Intl.RelativeTimeFormat(navigator.language, { numeric: 'auto' });
+export function reldate(date: Date, locale: string = navigator.language): string {
+  const formatter = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
 
   const now = new Date();
   const delta = date.getTime() - now.getTime();
