@@ -4,6 +4,7 @@
   import Blocks from './Blocks.svelte';
   import { ClockAlert, ClockFading, Trash } from '@lucide/svelte';
   import DateEditor from './DateEditor.svelte';
+  import { reldate } from '$lib/reldate';
 
   let { list }: { list: co.loaded<co.List<typeof Task>> } = $props();
 </script>
@@ -37,7 +38,7 @@
         {#snippet present(date: Date)}
           <span class="inline-flex items-center gap-2">
             <ClockFading class="w-4" />
-            {date.toLocaleString()}
+            {reldate(date)}
           </span>
         {/snippet}
       </DateEditor>
@@ -55,7 +56,7 @@
         {#snippet present(date: Date)}
           <span class="inline-flex items-center gap-2">
             <ClockAlert class="w-4" />
-            {date.toLocaleString()}
+            {reldate(date)}
           </span>
         {/snippet}
       </DateEditor>
