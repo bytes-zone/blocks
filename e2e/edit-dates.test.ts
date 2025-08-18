@@ -12,12 +12,10 @@ test('you should be able to edit dates for a task', async ({ page }) => {
 
   // edit due date
   await page.getByRole('button', { name: 'No due date set' }).click();
-  await page.getByLabel('Due date').fill('2027-01-01');
+  await page.getByLabel('Due date').fill('in 2 days');
   await page.getByLabel('Due date').blur();
 
-  await expect(
-    page.getByRole('button', { name: '1/1/2027, 12:00:00 PM', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('button', { name: 'in 2 days', exact: true })).toBeVisible();
 
   // clear due date
   await page.getByRole('button', { name: 'Clear due date' }).click();
