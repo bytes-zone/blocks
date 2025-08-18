@@ -5,6 +5,7 @@
   import { ClockAlert, ClockFading, Trash } from '@lucide/svelte';
   import DateEditor from './DateEditor.svelte';
   import { reldate } from '$lib/reldate';
+  import SingleTask from './SingleTask.svelte';
 
   let { list }: { list: co.loaded<co.List<typeof Task>> } = $props();
 </script>
@@ -105,6 +106,16 @@
     </tbody>
   </table>
 </div>
+
+<ol class="flex flex-col gap-2">
+  {#each list as task (task?.id)}
+    {#if task}
+      <li>
+        <SingleTask {task} />
+      </li>
+    {/if}
+  {/each}
+</ol>
 
 <style>
   thead,
