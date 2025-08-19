@@ -8,24 +8,26 @@
 </script>
 
 <div class="flex items-center gap-2 rounded-container px-2 py-1 hover:bg-primary-50-950">
+  <div class="order-2">
+    {task.title}
+  </div>
+
   <input
     type="checkbox"
     checked={task?.completed}
     aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
     onchange={(e) => (task.completed = e.currentTarget.checked)}
+    class="order-1"
   />
 
-  <div>
-    {task.title}
-  </div>
-
   <div
-    class="flex items-center gap-1 rounded-base border-1 p-0 pr-1 text-xs {task.plannedBlocks > 0
+    class="order-2 flex items-center gap-1 rounded-base border-1 p-0 pr-1 text-xs {task.plannedBlocks >
+    0
       ? 'border-primary-500'
       : 'border-dashed border-primary-200-800'}"
   >
     <div class="px-1 {task.plannedBlocks > 0 ? 'bg-primary-500' : 'bg-primary-200-800'}">
-      <Cuboid class="w-4 text-primary-50-950" role="graphics-symbol" aria-label="Blocks" />
+      <Cuboid class="w-4 text-primary-50-950" aria-hidden="true" />
     </div>
     <div>
       {#if task.plannedBlocks > 0 || task.completedBlocks > 0}
@@ -43,9 +45,11 @@
   </div>
 
   {#if task.wait && task.wait > new Date()}
-    <div class="flex items-center gap-1 rounded-base border-1 border-surface-500 p-0 pr-1 text-xs">
+    <div
+      class="order-2 flex items-center gap-1 rounded-base border-1 border-surface-500 p-0 pr-1 text-xs"
+    >
       <div class="bg-surface-500 px-1">
-        <ClockFading class="w-4 text-surface-50-950" role="graphics-symbol" aria-label="Wait" />
+        <ClockFading class="w-4 text-surface-50-950" aria-hidden="true" />
       </div>
       <div>
         <span class="sr-only">start</span>
@@ -55,9 +59,11 @@
   {/if}
 
   {#if task.due && task.due > new Date()}
-    <div class="flex items-center gap-1 rounded-base border-1 border-warning-500 p-0 pr-1 text-xs">
+    <div
+      class="order-2 flex items-center gap-1 rounded-base border-1 border-warning-500 p-0 pr-1 text-xs"
+    >
       <div class="bg-warning-500 px-1">
-        <ClockAlert class="w-4 text-warning-50-950" role="graphics-symbol" aria-label="Due" />
+        <ClockAlert class="w-4 text-warning-50-950" aria-hidden="true" />
       </div>
       <div>
         <span class="sr-only">due</span>
