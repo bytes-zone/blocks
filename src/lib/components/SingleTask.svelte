@@ -38,6 +38,15 @@
       }
     };
   }
+
+  let now = $state(new Date());
+  $effect(() => {
+    const interval = setInterval(() => {
+      now = new Date();
+    }, 60 * 1000);
+
+    return () => clearInterval(interval);
+  });
 </script>
 
 <div class="todo-item flex items-center gap-2 rounded-container px-2 py-1" bind:this={row}>
@@ -61,14 +70,14 @@
     {/if}
   </Tag>
 
-  {#if task.wait && task.wait > new Date()}
+  {#if task.wait && task.wait > now}
     <Tag icon={ClockFading} theme="surface">
       <span class="sr-only">start</span>
       {reldate(task.wait)}
     </Tag>
   {/if}
 
-  {#if task.due && task.due > new Date()}
+  {#if task.due && task.due > now}
     <Tag icon={ClockAlert} theme="warning">
       <span class="sr-only">due</span>
       {reldate(task.due)}
