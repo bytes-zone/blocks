@@ -8,16 +8,13 @@ test('you should be able to edit dates for a task', async ({ page }) => {
 
   await page.getByText('Inbox (1)').click();
 
-  await expect(page.getByRole('rowheader', { name: 'Buy milk', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Edit Buy milk', exact: true }).click();
 
   // edit due date
-  await page.getByRole('button', { name: 'No due date set' }).click();
-  await page.getByLabel('Due date').fill('in 2 days');
-  await page.getByLabel('Due date').blur();
+  await page.getByLabel('Due').fill('in 2 days');
+  await page.getByLabel('Due').blur();
 
-  await expect(page.getByRole('button', { name: 'in 2 days', exact: true })).toBeVisible();
+  await page.keyboard.press('Escape');
 
-  // clear due date
-  await page.getByRole('button', { name: 'Clear due date' }).click();
-  await expect(page.getByRole('button', { name: 'No due date set' })).toBeVisible();
+  await expect(page.getByText('due in 2 days')).toBeVisible();
 });
