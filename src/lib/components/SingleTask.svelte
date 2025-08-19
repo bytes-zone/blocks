@@ -67,7 +67,7 @@
 <dialog
   bind:this={modal}
   closedby="any"
-  class="rounded-container backdrop:backdrop-brightness-[0.75]"
+  class="rounded-container backdrop:backdrop-blur-[.5px] backdrop:backdrop-saturate-50"
 >
   <div class="flex flex-col gap-2 px-2 py-1">
     <div class="flex items-center gap-2">
