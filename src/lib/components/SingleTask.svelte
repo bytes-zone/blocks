@@ -26,7 +26,7 @@
         : 'border-dashed border-primary-200-800'}"
     >
       <div class="px-1 {task.plannedBlocks > 0 ? 'bg-primary-500' : 'bg-primary-200-800'}">
-        <Cuboid class="w-4 text-primary-50-950" />
+        <Cuboid class="w-4 text-primary-50-950" role="graphics-symbol" aria-label="Blocks" />
       </div>
       <div>
         {#if task.plannedBlocks > 0 || task.completedBlocks > 0}
@@ -48,7 +48,7 @@
         class="flex items-center gap-1 rounded-base border-1 border-surface-500 p-0 pr-1 text-xs"
       >
         <div class="bg-surface-500 px-1">
-          <ClockFading class="w-4 text-surface-50-950" />
+          <ClockFading class="w-4 text-surface-50-950" role="graphics-symbol" aria-label="Wait" />
         </div>
         <div>
           <span class="sr-only">start</span>
@@ -62,7 +62,7 @@
         class="flex items-center gap-1 rounded-base border-1 border-warning-500 p-0 pr-1 text-xs"
       >
         <div class="bg-warning-500 px-1">
-          <ClockAlert class="w-4 text-warning-50-950" />
+          <ClockAlert class="w-4 text-warning-50-950" role="graphics-symbol" aria-label="Due" />
         </div>
         <div>
           <span class="sr-only">due</span>
