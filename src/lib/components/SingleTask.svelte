@@ -7,7 +7,7 @@
   let { task }: { task: co.loaded<typeof Task> } = $props();
 </script>
 
-<div class="flex items-center gap-2 rounded-container px-2 py-1 hover:bg-primary-50-950">
+<div class="todo-item flex items-center gap-2 rounded-container px-2 py-1 hover:bg-primary-50-950">
   <div class="order-2">
     {task.title}
   </div>
@@ -71,4 +71,28 @@
       </div>
     </div>
   {/if}
+
+  <button class="edit-todo-button">
+    <span class="sr-only">Edit {task.title}</span>
+  </button>
 </div>
+
+<style>
+  .todo-item {
+    position: relative;
+  }
+
+  .todo-item > input {
+    z-index: 2;
+  }
+
+  .edit-todo-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+  }
+</style>
