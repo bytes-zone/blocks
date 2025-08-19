@@ -6,9 +6,24 @@
   import Tag from './Tag.svelte';
 
   let { task }: { task: co.loaded<typeof Task> } = $props();
+
+  let row: HTMLElement;
+  let modal: HTMLDialogElement;
+
+  function openEdit() {
+    if (!modal || !row) return;
+
+    modal.showModal();
+    modal.style.left = row.offsetLeft + 'px';
+    modal.style.top = row.offsetTop + 'px';
+    modal.style.width = row.clientWidth + 'px';
+  }
 </script>
 
-<div class="todo-item flex items-center gap-2 rounded-container px-2 py-1 hover:bg-primary-50-950">
+<div
+  class="todo-item flex items-center gap-2 rounded-container px-2 py-1 hover:bg-primary-50-950"
+  bind:this={row}
+>
   <div class="order-2">
     {task.title}
   </div>
@@ -49,10 +64,32 @@
     </Tag>
   {/if}
 
-  <button class="edit-todo-button">
+  <button class="edit-todo-button" onclick={openEdit}>
     <span class="sr-only">Edit {task.title}</span>
   </button>
 </div>
+
+<dialog
+  bind:this={modal}
+  closedby="any"
+  class="rounded-container backdrop:backdrop-brightness-[0.75]"
+>
+  <div class="flex flex-col gap-2 px-2 py-1">
+    <div class="flex items-center gap-2">
+      <div class="order-2">
+        {task.title}
+      </div>
+
+      <input
+        type="checkbox"
+        checked={task?.completed}
+        aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
+        onchange={(e) => (task.completed = e.currentTarget.checked)}
+        class="order-1"
+      />
+    </div>
+  </div>
+</dialog>
 
 <style>
   .todo-item {
@@ -71,5 +108,11 @@
     height: 100%;
     cursor: pointer;
     z-index: 1;
+  }
+
+  dialog {
+    /* override some browser styles */
+    max-width: unset;
+    max-height: unset;
   }
 </style>
