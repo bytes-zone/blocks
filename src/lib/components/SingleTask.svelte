@@ -15,12 +15,8 @@
 
     modal.showModal();
     modal.style.left = row.offsetLeft + 'px';
+    modal.style.top = row.offsetTop + 'px';
     modal.style.width = row.clientWidth + 'px';
-
-    // For some reason, the modal ends up one pixel too high by default. This
-    // doesn't seem to be a difference in styles. It might be something built
-    // into the browser?
-    modal.style.top = row.offsetTop + 1 + 'px';
   }
 </script>
 
@@ -86,6 +82,29 @@
         onchange={(e) => (task.completed = e.currentTarget.checked)}
         class="order-1"
       />
+
+      <Tag icon={Cuboid} theme="primary" implicit={task.plannedBlocks == 0}>
+        {#if task.plannedBlocks > 0 || task.completedBlocks > 0}
+          {task.completedBlocks} <span class="sr-only">blocks completed</span> / {task.plannedBlocks}
+          <span class="sr-only">blocks planned</span>
+        {:else}
+          &lt; 1 <span class="sr-only">block planned</span>
+        {/if}
+      </Tag>
+
+      {#if task.wait && task.wait > new Date()}
+        <Tag icon={ClockFading} theme="surface">
+          <span class="sr-only">start</span>
+          {reldate(task.wait)}
+        </Tag>
+      {/if}
+
+      {#if task.due && task.due > new Date()}
+        <Tag icon={ClockAlert} theme="warning">
+          <span class="sr-only">due</span>
+          {reldate(task.due)}
+        </Tag>
+      {/if}
     </div>
   </div>
 </dialog>
