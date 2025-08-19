@@ -42,15 +42,10 @@
 
   <Tag icon={Cuboid} theme="primary" implicit={task.plannedBlocks == 0}>
     {#if task.plannedBlocks > 0 || task.completedBlocks > 0}
-      <span class="sr-only">
-        {task.completedBlocks} out of {task.plannedBlocks} blocks completed
-      </span>
-      <span class="not-sr-only">
-        {task.completedBlocks} / {task.plannedBlocks}
-      </span>
+      {task.completedBlocks} <span class="sr-only">blocks completed</span> / {task.plannedBlocks}
+      <span class="sr-only">blocks planned</span>
     {:else}
-      <span class="sr-only">less than one block planned</span>
-      <span class="not-sr-only">&lt; 1</span>
+      &lt; 1 <span class="sr-only">block planned</span>
     {/if}
   </Tag>
 
