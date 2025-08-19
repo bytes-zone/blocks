@@ -20,10 +20,7 @@
   }
 </script>
 
-<div
-  class="todo-item flex items-center gap-2 rounded-container px-2 py-1 hover:bg-primary-50-950"
-  bind:this={row}
->
+<div class="todo-item flex items-center gap-2 rounded-container px-2 py-1" bind:this={row}>
   <div class="order-2">
     {task.title}
   </div>
