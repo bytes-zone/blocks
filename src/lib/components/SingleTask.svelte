@@ -15,8 +15,12 @@
 
     modal.showModal();
     modal.style.left = row.offsetLeft + 'px';
-    modal.style.top = row.offsetTop + 'px';
     modal.style.width = row.clientWidth + 'px';
+
+    // For some reason, the modal ends up one pixel too high by default. This
+    // doesn't seem to be a difference in styles. It might be something built
+    // into the browser?
+    modal.style.top = row.offsetTop + 1 + 'px';
   }
 </script>
 
