@@ -8,7 +8,7 @@ test('you should be able to complete a task', async ({ page }) => {
 
   await page.getByText('Inbox (1)').click();
 
-  const complete = page.getByLabel('Mark Buy milk complete');
+  const complete = page.getByRole('checkbox', { name: 'Mark Buy milk complete' });
 
   await expect(complete).not.toBeChecked();
   await complete.check();

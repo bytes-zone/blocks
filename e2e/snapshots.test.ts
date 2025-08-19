@@ -11,5 +11,7 @@ test('inbox page snapshot should be accessible', async ({ page }) => {
 
   await page.getByText('Inbox (2)').click();
 
+  await page.getByRole('button', { name: 'Edit Buy milk', exact: true }).click();
+
   await expect(page.getByRole('main')).toMatchAriaSnapshot({ name: 'inbox.aria.yaml' });
 });
