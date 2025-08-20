@@ -8,7 +8,7 @@
         "@eslint/js": "9.33.0",
         "@lucide/svelte": "0.540.0",
         "@playwright/test": "1.54.2",
-        "@skeletonlabs/skeleton": "3.1.8",
+        "@skeletonlabs/skeleton": "3.2.0",
         "@skeletonlabs/skeleton-svelte": "1.4.0",
         "@sveltejs/adapter-auto": "6.1.0",
         "@sveltejs/kit": "2.33.0",
@@ -213,7 +213,7 @@
 
     "@scure/bip39": ["@scure/bip39@1.6.0", "", { "dependencies": { "@noble/hashes": "~1.8.0", "@scure/base": "~1.2.5" } }, "sha512-+lF0BbLiJNwVlev4eKelw1WWLaiKXw7sSl8T6FvBlWkdX+94aGJ4o8XjUdlyhTCjd8c+B3KT3JfS8P0bLRNU6A=="],
 
-    "@skeletonlabs/skeleton": ["@skeletonlabs/skeleton@3.1.8", "", { "peerDependencies": { "tailwindcss": "^4.0.0" } }, "sha512-hPSGfXLJUzdN7l/VqXJKYkswu6MO45C3RnqWXZnlvtnnrH0nCGvvw4gh+DDIfD7I85aDr8Z29HJWwuInH+e3tg=="],
+    "@skeletonlabs/skeleton": ["@skeletonlabs/skeleton@3.2.0", "", { "peerDependencies": { "tailwindcss": "^4.0.0" } }, "sha512-pV1IXFr3uOfeS4ISHEvONGke25p2GRKVtbEtF11HPcM2P8UKBFyPaIT7bAmlVE1vdIlq5x77+F8b77+6LuvWWw=="],
 
     "@skeletonlabs/skeleton-svelte": ["@skeletonlabs/skeleton-svelte@1.4.0", "", { "dependencies": { "@zag-js/accordion": "^1.18.3", "@zag-js/avatar": "^1.18.3", "@zag-js/combobox": "^1.18.3", "@zag-js/dialog": "^1.18.3", "@zag-js/file-upload": "^1.18.3", "@zag-js/pagination": "^1.18.3", "@zag-js/popover": "^1.18.3", "@zag-js/progress": "^1.18.3", "@zag-js/radio-group": "^1.18.3", "@zag-js/rating-group": "^1.18.3", "@zag-js/slider": "^1.18.3", "@zag-js/svelte": "^1.18.3", "@zag-js/switch": "^1.18.3", "@zag-js/tabs": "^1.18.3", "@zag-js/tags-input": "^1.18.3", "@zag-js/toast": "^1.18.3", "@zag-js/tooltip": "^1.18.3" }, "peerDependencies": { "svelte": "^5.20.0" } }, "sha512-2WRlfvZktk4lgVzdttBmB62k+hIpwiB7dKU4LsJgF2H77DOK9BlJVw/r58UJDO9TLTkOE5PxaJYcx4Qiz5Scyg=="],
 
