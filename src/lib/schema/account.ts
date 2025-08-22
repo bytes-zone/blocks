@@ -27,7 +27,10 @@ export const Account = co
     }
 
     if (!account.root.areas) {
-      account.root.areas = CoList.create([]) as CoList<Area>;
+      const group = Group.create();
+      group.addMember(account.root._owner, 'admin');
+
+      account.root.areas = CoList.create([], group) as CoList<Area>;
     }
 
     if (!account.profile) {
