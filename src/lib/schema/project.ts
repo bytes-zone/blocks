@@ -1,4 +1,4 @@
-import { Task } from '$lib/task';
+import { Task } from './task';
 import { co, z } from 'jazz-tools';
 
 export const Project = co.map({

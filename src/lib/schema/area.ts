@@ -7,3 +7,5 @@ export const Area = co.map({
 
   projects: co.list(Project),
 });
+
+export type Area = co.loaded<typeof Area>;

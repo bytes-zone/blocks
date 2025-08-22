@@ -2,7 +2,7 @@
   import '../app.css';
   import favicon from '$lib/assets/favicon.svg';
   import { JazzSvelteProvider } from 'jazz-tools/svelte';
-  import { Account } from '$lib/schema';
+  import { Account } from '$lib/schema/account';
   import Header from '$lib/components/Header.svelte';
 
   let sync = { peer: 'wss://cloud.jazz.tools/?key=blockstodo@brianthicks.com' };

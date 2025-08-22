@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Profile } from '$lib/schema';
+  import type { Profile } from '$lib/schema/profile';
 
   const { profile }: { profile: Profile } = $props();
 </script>
