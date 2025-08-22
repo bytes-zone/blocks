@@ -16,9 +16,11 @@
 
 <JazzSvelteProvider {sync} AccountSchema={Account}>
   <AuthGate>
-    <Sidebar />
-    <main class="mx-auto max-w-7xl p-2 lg:px-8">
-      {@render children?.()}
-    </main>
+    <div class="flex gap-4">
+      <Sidebar />
+      <main class="mx-auto max-w-7xl p-2 lg:px-8">
+        {@render children?.()}
+      </main>
+    </div>
   </AuthGate>
 </JazzSvelteProvider>
