@@ -3,7 +3,7 @@
   import { AccountCoState, usePasskeyAuth } from 'jazz-tools/svelte';
   import { page } from '$app/state';
   import QuickAdd from './QuickAdd.svelte';
-  import { createFromDraft, type DraftTask } from '$lib/task';
+  import { createFromDraft, type DraftTask } from '$lib/schema/task';
 
   let { appName = 'Blocks' } = $props();
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { parseTask, type DraftTask } from '$lib/task';
+  import { parseTask, type DraftTask } from '$lib/schema/task';
 
   let { addTask }: { addTask: (draft: DraftTask) => void } = $props();
 
