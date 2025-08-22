@@ -1,5 +1,6 @@
 import { co, z } from 'jazz-tools';
 import * as chrono from 'chrono-node';
+import { SubTask } from './subtask';
 
 export const Task = co.map({
   title: co.plainText(),
@@ -13,9 +14,8 @@ export const Task = co.map({
 
   completed: z.boolean(),
 
-  get children() {
-    return co.list(Task);
-  },
+  subtasks: co.list(SubTask),
+
   get blockers() {
     return co.list(Task);
   },
@@ -76,7 +76,7 @@ export function createFromDraft(task: DraftTask): Task {
       notes: '',
       completed: false,
       completedBlocks: 0,
-      children: [],
+      subtasks: [],
       blockers: [],
     }),
   );

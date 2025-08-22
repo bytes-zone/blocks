@@ -1,6 +1,6 @@
 <script lang="ts">
   import { reldate } from '$lib/reldate';
-  import type { Task } from '$lib/task';
+  import type { Task } from '$lib/schema/task';
   import { ClockFading, ClockAlert, Cuboid } from '@lucide/svelte';
   import { co } from 'jazz-tools';
   import Tag from './Tag.svelte';

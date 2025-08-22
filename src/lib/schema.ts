@@ -1,5 +1,5 @@
 import { co, Group } from 'jazz-tools';
-import { Task } from './task';
+import { Task } from './schema/task';
 
 export const Profile = co.profile();
 export type Profile = co.loaded<typeof Profile>;
