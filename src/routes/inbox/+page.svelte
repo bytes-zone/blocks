@@ -1,6 +1,6 @@
 <script lang="ts">
   import TaskList from '$lib/components/TaskList.svelte';
-  import { Account } from '$lib/schema';
+  import { Account } from '$lib/schema/account';
   import { AccountCoState } from 'jazz-tools/svelte';
 
   const account = new AccountCoState(Account, {

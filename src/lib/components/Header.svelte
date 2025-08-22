@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Account } from '$lib/schema';
+  import { Account } from '$lib/schema/account';
   import { AccountCoState, usePasskeyAuth } from 'jazz-tools/svelte';
   import { page } from '$app/state';
   import QuickAdd from './QuickAdd.svelte';

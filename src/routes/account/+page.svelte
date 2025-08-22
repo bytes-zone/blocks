@@ -1,6 +1,6 @@
 <script>
   import ProfileEditor from '$lib/components/ProfileEditor.svelte';
-  import { Account } from '$lib/schema';
+  import { Account } from '$lib/schema/account';
   import { AccountCoState } from 'jazz-tools/svelte';
 
   const account = new AccountCoState(Account, {
