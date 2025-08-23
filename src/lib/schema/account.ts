@@ -14,7 +14,7 @@ export const Account = co
     root: Root,
   })
   .withMigration((account) => {
-    if (!account.root) {
+    if (account.root === undefined) {
       const group = Group.create();
 
       account.root = Root.create(
@@ -26,7 +26,7 @@ export const Account = co
       );
     }
 
-    if (!account.root.areas) {
+    if (account.root && account.root.areas === undefined) {
       const group = Group.create();
       group.addMember(account.root._owner, 'admin');
 
