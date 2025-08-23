@@ -69,7 +69,7 @@
     </button>
 
     {#if account.current && account.isAuthenticated}
-      <button class="btn-icon btn" onclick={() => account.logOut()}>
+      <button type="button" class="btn-icon btn" onclick={() => account.logOut()}>
         <span class="sr-only">Log out</span>
         <LogOut class="text-surface-500" />
       </button>
