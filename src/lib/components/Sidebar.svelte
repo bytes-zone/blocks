@@ -15,7 +15,7 @@
   <div
     class="flex shrink-1 items-center justify-between border-t border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900"
   >
-    {#if account.current}
+    {#if account.current && account.isAuthenticated}
       <p>
         Logged in as {account.current.profile.name}
       </p>
@@ -24,7 +24,7 @@
         <LogOut class="text-surface-500" />
       </button>
     {:else}
-      Currently anonymous!
+      Not signed in!
     {/if}
   </div>
 </div>
