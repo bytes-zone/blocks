@@ -1,4 +1,4 @@
-import { co, z } from 'jazz-tools';
+import { co, Group, z } from 'jazz-tools';
 import * as chrono from 'chrono-node';
 import { SubTask } from './subtask';
 
@@ -70,14 +70,19 @@ export function parseTask(input: string): DraftTask {
   return { title: title.trim(), plannedBlocks, due, wait };
 }
 
-export function createFromDraft(task: DraftTask): Task {
+export function createFromDraft(task: DraftTask, group?: Group): Task {
   return Task.create(
-    Object.assign({}, task, {
-      notes: '',
-      completed: false,
-      completedBlocks: 0,
-      subtasks: [],
-      blockers: [],
-    }),
+    Object.assign(
+      {},
+      task,
+      {
+        notes: '',
+        completed: false,
+        completedBlocks: 0,
+        subtasks: [],
+        blockers: [],
+      },
+      group || Group.create(),
+    ),
   );
 }
