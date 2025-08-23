@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Account } from '$lib/schema/account';
-  import { Icon, Inbox, LogOut } from '@lucide/svelte';
+  import { House, Icon, Inbox, LogOut } from '@lucide/svelte';
   import { AccountCoState } from 'jazz-tools/svelte';
   import { page } from '$app/state';
 
@@ -35,6 +35,8 @@
   <div class="grow-1 py-4">
     <nav aria-label="primary">
       <ol class="flex flex-col gap-2">
+        {@render link('/', 'Home', page.route.id === '/', House, 'text-surface-300-700')}
+
         {@render link(
           '/inbox',
           'Inbox',
