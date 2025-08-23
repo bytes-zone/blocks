@@ -2,7 +2,7 @@
   import { usePasskeyAuth } from 'jazz-tools/svelte';
   import type { Snippet } from 'svelte';
 
-  const { children }: { children: Snippet } = $props();
+  const { children, allowAnonymous }: { children: Snippet; allowAnonymous: boolean } = $props();
 
   const { current, state: authState } = $derived(usePasskeyAuth({ appName: 'Blocks' }));
 
@@ -11,7 +11,7 @@
   let emailIsValid = $derived(cleanEmail.match(/.+@.+/));
 </script>
 
-{#if authState === 'signedIn'}
+{#if authState === 'signedIn' || allowAnonymous}
   {@render children()}
 {:else}
   <div class="inset-0 flex min-h-screen items-center justify-center">
