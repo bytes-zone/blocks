@@ -1,8 +1,9 @@
 <script lang="ts">
   import { Account } from '$lib/schema/account';
-  import { House, Icon, Inbox, LogOut } from '@lucide/svelte';
+  import { CirclePlus, House, Icon, Inbox, LogOut } from '@lucide/svelte';
   import { AccountCoState } from 'jazz-tools/svelte';
   import { page } from '$app/state';
+  import { createFromDraft, parseTask } from '$lib/schema/task';
 
   let account = new AccountCoState(Account, {
     resolve: {
@@ -10,6 +11,12 @@
       root: { inbox: { $each: true } },
     },
   });
+
+  let quickAdd: HTMLDialogElement;
+  let quickAddText = $state('');
+  function openQuickAdd() {
+    quickAdd.showModal();
+  }
 </script>
 
 {#snippet link(
@@ -56,10 +63,12 @@
   <div
     class="flex shrink-1 items-center justify-between border-t border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900"
   >
+    <button class="btn" onclick={openQuickAdd}>
+      <CirclePlus class="w-4 text-success-500" />
+      <span>Add item</span>
+    </button>
+
     {#if account.current && account.isAuthenticated}
-      <p>
-        Logged in as {account.current.profile.name}
-      </p>
       <button class="btn-icon btn" onclick={() => account.logOut()}>
         <span class="sr-only">Log out</span>
         <LogOut class="text-surface-500" />
@@ -69,3 +78,37 @@
     {/if}
   </div>
 </div>
+
+<dialog
+  bind:this={quickAdd}
+  closedby="any"
+  class="top-1/2 left-1/2 -translate-1/2 rounded-container"
+  onclose={() => (quickAddText = '')}
+>
+  <form
+    class="mx-auto rounded-base bg-gray-100 dark:bg-gray-900"
+    onsubmit={(e) => {
+      e.preventDefault();
+
+      if (account?.current?.root.inbox) {
+        const task = createFromDraft(parseTask(quickAddText));
+        account.current.root.inbox.push(task);
+      }
+      quickAdd.close();
+    }}
+  >
+    <input
+      type="text"
+      class="input w-sm text-xl"
+      placeholder="What needs doing?"
+      bind:value={quickAddText}
+    />
+  </form>
+</dialog>
+
+<style>
+  dialog {
+    max-width: unset;
+    max-height: unset;
+  }
+</style>
