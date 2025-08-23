@@ -5,7 +5,10 @@
   import { page } from '$app/state';
 
   let account = new AccountCoState(Account, {
-    resolve: { profile: true, root: { inbox: true } },
+    resolve: {
+      profile: true,
+      root: { inbox: { $each: true } },
+    },
   });
 </script>
 
