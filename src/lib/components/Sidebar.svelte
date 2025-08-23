@@ -7,7 +7,7 @@
 </script>
 
 <div
-  class="flex min-h-screen w-sm flex-col border-r border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950"
+  class="flex min-h-screen w-xs flex-col border-r border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950"
 >
   <div class="grow-1 p-4">
     <p>Hey</p>
