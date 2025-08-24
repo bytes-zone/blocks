@@ -31,7 +31,7 @@
   <li class="px-4 py-1" class:bg-primary-50-950={active}>
     <a href={url} class="flex w-full cursor-pointer items-center justify-between">
       <div class="flex gap-2">
-        <CurrentIcon class="w-5 {iconColor}" />
+        <CurrentIcon class="w-5 {iconColor}" aria-hidden="true" />
         {label}
       </div>
       <div class="text-surface-700-300">{rhs}</div>
@@ -39,7 +39,7 @@
   </li>
 {/snippet}
 
-<div
+<header
   class="flex min-h-screen w-xs flex-col border-r border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950"
 >
   <div class="grow-1 py-4">
@@ -77,7 +77,7 @@
       Not signed in!
     {/if}
   </div>
-</div>
+</header>
 
 <dialog
   bind:this={quickAdd}

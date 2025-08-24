@@ -1,15 +1,21 @@
 import { expect, test } from '@playwright/test';
+import { goToInbox, quickAdd, start } from './utils';
+
+test('nav should be accessible', async ({ page }) => {
+  await start(page);
+
+  await quickAdd(page, 'Buy milk due:in 2 days');
+
+  await expect(page.getByRole('banner')).toMatchAriaSnapshot({ name: 'nav.aria.yaml' });
+});
 
 test('inbox page snapshot should be accessible', async ({ page }) => {
-  await page.goto('/');
+  await start(page);
 
-  await page.getByPlaceholder('What do you need to do?').fill('Buy milk due:in 2 days');
-  await page.getByRole('button', { name: 'Add' }).click();
+  await quickAdd(page, 'Buy milk due:in 2 days');
+  await quickAdd(page, 'Wash the car blocks:2');
 
-  await page.getByPlaceholder('What do you need to do?').fill('Wash the car blocks:2');
-  await page.getByRole('button', { name: 'Add' }).click();
-
-  await page.getByText('Inbox (2)').click();
+  await goToInbox(page);
 
   await page.getByRole('button', { name: 'Edit Buy milk', exact: true }).click();
 
