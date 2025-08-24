@@ -1,11 +1,10 @@
 import { expect, test } from '@playwright/test';
-import { quickAdd, start } from './utils';
+import { goToInbox, quickAdd, start } from './utils';
 
 test('quick-adding a task should send it to the inbox', async ({ page }) => {
   await start(page);
   await quickAdd(page, 'Buy milk');
-
-  await page.getByText('Inbox').click();
+  await goToInbox(page);
 
   await expect(page.getByText('Buy milk', { exact: true })).toBeVisible();
 });

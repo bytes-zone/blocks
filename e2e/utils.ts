@@ -4,6 +4,10 @@ export async function start(page: Page) {
   await page.goto('/?demo=true');
 }
 
+export async function goToInbox(page: Page) {
+  await page.getByRole('navigation').getByText('Inbox').click();
+}
+
 export async function quickAdd(page: Page, text: string) {
   await page.getByRole('button', { name: 'Add item' }).click();
 
