@@ -30,7 +30,7 @@ export const Account = co
       const group = Group.create();
       group.addMember(account.root._owner, 'admin');
 
-      account.root.areas = CoList.create([], group) as CoList<Area>;
+      account.root.areas = Root.shape.areas.create([], group);
     }
 
     if (!account.profile) {
