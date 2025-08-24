@@ -59,7 +59,7 @@
   <div
     class="flex shrink-1 items-center justify-between border-t border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900"
   >
-    <button class="btn" onclick={openQuickAdd}>
+    <button class="btn" onclick={() => quickAdd.showModal()}>
       <CirclePlus class="w-4 text-success-500" />
       <span>Add item</span>
     </button>
