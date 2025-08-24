@@ -3,7 +3,7 @@
   import { CirclePlus, House, Icon, Inbox, LogOut } from '@lucide/svelte';
   import { AccountCoState } from 'jazz-tools/svelte';
   import { page } from '$app/state';
-  import { createFromDraft, parseTask } from '$lib/schema/task';
+  import QuickAdd from './QuickAdd.svelte';
 
   let account = new AccountCoState(Account, {
     resolve: {
@@ -13,10 +13,6 @@
   });
 
   let quickAdd: HTMLDialogElement;
-  let quickAddText = $state('');
-  function openQuickAdd() {
-    quickAdd.showModal();
-  }
 </script>
 
 {#snippet link(
@@ -83,32 +79,13 @@
   bind:this={quickAdd}
   closedby="any"
   class="top-1/2 left-1/2 -translate-1/2 rounded-container"
-  onclose={() => (quickAddText = '')}
 >
-  <form
-    class="mx-auto rounded-base bg-gray-100 dark:bg-gray-900"
-    onsubmit={(e) => {
-      e.preventDefault();
-
+  <QuickAdd
+    onadd={(task) => {
       if (account?.current?.root.inbox) {
-        const task = createFromDraft(parseTask(quickAddText));
         account.current.root.inbox.push(task);
       }
       quickAdd.close();
     }}
-  >
-    <input
-      type="text"
-      class="input w-sm text-xl"
-      placeholder="What needs doing?"
-      bind:value={quickAddText}
-    />
-  </form>
+  />
 </dialog>
-
-<style>
-  dialog {
-    max-width: unset;
-    max-height: unset;
-  }
-</style>
