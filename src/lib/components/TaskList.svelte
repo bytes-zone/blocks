@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Task } from '$lib/task';
+  import type { Task } from '$lib/schema/task';
   import { co } from 'jazz-tools';
   import SingleTask from './SingleTask.svelte';
 
