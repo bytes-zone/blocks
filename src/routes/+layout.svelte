@@ -1,14 +1,18 @@
 <script lang="ts">
-  import '../app.css';
+  import { page } from '$app/state';
   import favicon from '$lib/assets/favicon.svg';
-  import { JazzSvelteProvider } from 'jazz-tools/svelte';
-  import { Account } from '$lib/schema/account';
   import AuthGate from '$lib/components/AuthGate.svelte';
   import Sidebar from '$lib/components/Sidebar.svelte';
-  import { page } from '$app/state';
+  import { Account } from '$lib/schema/account';
+  import type { SyncConfig } from 'jazz-tools';
+  import { JazzSvelteProvider } from 'jazz-tools/svelte';
+  import '../app.css';
 
   let demo = page.url.searchParams.has('demo');
-  let sync = demo ? {} : { peer: 'wss://cloud.jazz.tools/?key=blockstodo@brianthicks.com' };
+  let sync: SyncConfig = {
+    peer: 'wss://cloud.jazz.tools/?key=blockstodo@brianthicks.com',
+    when: demo ? 'signedUp' : 'never',
+  };
   let { children } = $props();
 </script>
 
