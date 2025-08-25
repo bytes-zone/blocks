@@ -14,3 +14,11 @@ export async function quickAdd(page: Page, text: string) {
   await page.getByPlaceholder('What needs doing?').fill(text);
   await page.getByPlaceholder('What needs doing?').press('Enter');
 }
+
+export async function addArea(page: Page, text: string) {
+  await page.getByRole('button', { name: 'Add area' }).click();
+
+  await page.getByLabel('Title').fill(text);
+
+  await page.getByRole('button', { name: 'Create' }).click();
+}

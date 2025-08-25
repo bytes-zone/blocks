@@ -7,6 +7,16 @@
             - listitem:
                 - link "Inbox 1":
                     - /url: /inbox
+    - navigation "areas":
+        - list:
+            - listitem:
+                - link "Home":
+                    - /url: /area/.+
+            - listitem:
+                - link "Work":
+                    - /url: /area/.+
     - button "Add item":
+        - img
+    - button "Add area":
         - img
     - text: Not signed in!
