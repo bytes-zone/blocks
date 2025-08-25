@@ -1,17 +1,23 @@
 <script lang="ts">
   import { Account } from '$lib/schema/account';
-  import { CirclePlus, House, Icon, Inbox, LogOut, MapPlus } from '@lucide/svelte';
+  import { CirclePlus, Grid2x2, House, Icon, Inbox, LogOut, MapPlus } from '@lucide/svelte';
   import { AccountCoState } from 'jazz-tools/svelte';
   import { page } from '$app/state';
   import QuickAdd from './QuickAdd.svelte';
   import AreaForm from './AreaForm.svelte';
+  import Grid_2x2Plus from '@lucide/svelte/icons/grid-2x2-plus';
 
   let account = new AccountCoState(Account, {
     resolve: {
       profile: true,
       root: {
         inbox: { $each: true },
-        areas: { $each: true },
+        areas: {
+          $each: {
+            title: true,
+            projects: { $each: true },
+          },
+        },
       },
     },
   });
@@ -60,6 +66,29 @@
         )}
       </ol>
     </nav>
+
+    <nav aria-label="areas">
+      {#if !root?.areas}
+        <div class="flex flex-col gap-2">
+          {#each { length: 5 }}
+            <div class="mx-2 h-4 placeholder animate-pulse py-1"></div>
+          {/each}
+        </div>
+      {:else}
+        <ol class="flex flex-col gap-4">
+          {#each root.areas as area (area.id)}
+            {@render link(
+              `/area/${area.id}`,
+              area.title?.toString(),
+              page.route.id === `/area/${area.id}`,
+              Grid2x2,
+              'text-surface-300-700',
+              area.projects.length > 0 ? area.projects.length.toString() : '',
+            )}
+          {/each}
+        </ol>
+      {/if}
+    </nav>
   </div>
   <div
     class="flex shrink-1 items-center justify-between border-t border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900"
@@ -70,7 +99,7 @@
     </button>
 
     <button class="btn" onclick={() => newArea.showModal()}>
-      <MapPlus class="w-4 text-success-500" />
+      <Grid_2x2Plus class="w-4 text-success-500" />
       <span class="sr-only">Add area</span>
     </button>
 
