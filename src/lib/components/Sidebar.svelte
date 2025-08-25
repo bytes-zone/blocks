@@ -9,7 +9,10 @@
   let account = new AccountCoState(Account, {
     resolve: {
       profile: true,
-      root: { inbox: { $each: true } },
+      root: {
+        inbox: { $each: true },
+        areas: { $each: true },
+      },
     },
   });
 
