@@ -94,19 +94,19 @@
     class="flex shrink-1 items-center justify-between border-t border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900"
   >
     <button class="btn" onclick={() => quickAdd.showModal()}>
-      <CirclePlus class="w-4 text-success-500" />
+      <CirclePlus class="w-4 text-success-500" aria-hidden="true" />
       <span class="sr-only">Add item</span>
     </button>
 
     <button class="btn" onclick={() => newArea.showModal()}>
-      <Grid_2x2Plus class="w-4 text-success-500" />
+      <Grid_2x2Plus class="w-4 text-success-500" aria-hidden="true" />
       <span class="sr-only">Add area</span>
     </button>
 
     {#if root && account.isAuthenticated}
       <button type="button" class="btn-icon btn" onclick={() => account.logOut()}>
         <span class="sr-only">Log out</span>
-        <LogOut class="text-surface-500" />
+        <LogOut class="text-surface-500" aria-hidden="true" />
       </button>
     {:else}
       Not signed in!
