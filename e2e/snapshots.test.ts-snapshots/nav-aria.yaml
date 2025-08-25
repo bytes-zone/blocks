@@ -1,0 +1,18 @@
+- banner:
+  - navigation "primary":
+    - list:
+      - listitem:
+        - link "Home":
+          - /url: /
+      - listitem:
+        - link "Inbox 1":
+          - /url: /inbox
+  - navigation "areas":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Work"
+  - button "Add item"
+  - button "Add area"
+  - text: Not signed in!
