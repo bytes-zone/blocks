@@ -1,4 +1,4 @@
-import { co, CoList, Group } from 'jazz-tools';
+import { co, Group } from 'jazz-tools';
 import { Task } from './task';
 import { Area } from './area';
 import { Profile } from './profile';
