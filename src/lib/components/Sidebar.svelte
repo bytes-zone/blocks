@@ -13,6 +13,8 @@
     },
   });
 
+  let root = $derived(account.current?.root);
+
   let quickAdd: HTMLDialogElement;
   let newArea: HTMLDialogElement;
 </script>
@@ -51,9 +53,7 @@
           page.route.id === '/inbox',
           Inbox,
           'text-primary-300-700',
-          account.current?.root?.inbox && account.current.root.inbox.length > 0
-            ? account.current.root.inbox.length.toString()
-            : '',
+          root?.inbox && root.inbox.length > 0 ? root.inbox.length.toString() : '',
         )}
       </ol>
     </nav>
@@ -71,7 +71,7 @@
       <span class="sr-only">Add area</span>
     </button>
 
-    {#if account.current && account.isAuthenticated}
+    {#if root && account.isAuthenticated}
       <button type="button" class="btn-icon btn" onclick={() => account.logOut()}>
         <span class="sr-only">Log out</span>
         <LogOut class="text-surface-500" />
@@ -89,9 +89,7 @@
 >
   <QuickAdd
     onadd={(task) => {
-      if (account?.current?.root.inbox) {
-        account.current.root.inbox.push(task);
-      }
+      if (root?.inbox) root.inbox.push(task);
       quickAdd.close();
     }}
   />
@@ -104,9 +102,7 @@
 >
   <AreaForm
     onsave={(area) => {
-      if (account?.current?.root?.areas) {
-        account.current.root.areas.push(area);
-      }
+      if (root?.areas) root.areas.push(area);
       newArea.close();
     }}
   />
