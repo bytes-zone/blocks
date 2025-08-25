@@ -46,7 +46,7 @@
 
   <label class="label">
     <span class="label-text">Notes</span>
-    <input type="text" placeholder="Title" bind:value={draftNotes} />
+    <input type="text" placeholder="Notes" bind:value={draftNotes} />
   </label>
 
   <button class="btn preset-filled-primary-500">
