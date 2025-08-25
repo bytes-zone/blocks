@@ -10,13 +10,9 @@
   - navigation "areas":
     - list:
       - listitem:
-        - link "Home":
-          - /url: /area/.+
+        - link "Home"
       - listitem:
-        - link "Work":
-          - /url: /area/.+
-  - button "Add item":
-    - img
-  - button "Add area":
-    - img
+        - link "Work"
+  - button "Add item"
+  - button "Add area"
   - text: Not signed in!
