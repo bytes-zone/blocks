@@ -1,10 +1,12 @@
 import { expect, test } from '@playwright/test';
-import { goToInbox, quickAdd, start } from './utils';
+import { addArea, goToInbox, quickAdd, start } from './utils';
 
 test('nav should be accessible', async ({ page }) => {
   await start(page);
 
   await quickAdd(page, 'Buy milk due:in 2 days');
+  await addArea(page, 'Home');
+  await addArea(page, 'Work');
 
   await expect(page.getByRole('banner')).toMatchAriaSnapshot({ name: 'nav.aria.yaml' });
 });
