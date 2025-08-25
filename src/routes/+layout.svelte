@@ -24,7 +24,7 @@
   <AuthGate allowAnonymous={demo}>
     <div class="flex gap-4">
       <Sidebar />
-      <main class="mx-auto max-w-7xl p-2 lg:px-8">
+      <main class="mx-auto max-w-7xl p-2 lg:min-w-3xl lg:px-8 lg:pt-8">
         {@render children?.()}
       </main>
     </div>
