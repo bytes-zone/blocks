@@ -14,6 +14,9 @@
     when: demo ? 'signedUp' : 'never',
   };
   let { children } = $props();
+
+  import polyfill from '@oddbird/css-anchor-positioning/fn';
+  if (typeof window !== 'undefined') polyfill();
 </script>
 
 <svelte:head>
