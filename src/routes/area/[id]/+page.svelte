@@ -1,8 +1,10 @@
 <script lang="ts">
   import { page } from '$app/state';
   import { Area } from '$lib/schema/area';
+  import { ArchiveRestore, Ellipsis, Trash } from '@lucide/svelte';
   import Grid_2x2 from '@lucide/svelte/icons/grid-2x2';
   import { CoState } from 'jazz-tools/svelte';
+  import { popover } from '$lib/popover';
 
   let state = $derived(
     new CoState(Area, page.params.id, {
@@ -14,6 +16,9 @@
     }),
   );
 
+  let id = $props.id();
+  let optionsId = `options-${id}`;
+
   let area = $derived(state.current);
 </script>
 
@@ -22,9 +27,29 @@
 {:else if area === null}
   <p>Area not found or unaccessible by your account.</p>
 {:else}
-  <h1 class="flex items-center gap-4 h3">
-    <Grid_2x2 aria-hidden="true" class="h-8 w-8 text-primary-300-700" />
-    {area.title}
-  </h1>
-  <p>{area.notes}</p>
+  <div class="flex flex-col gap-4">
+    <h1 class="flex items-center gap-4 h3">
+      <Grid_2x2 aria-hidden="true" class="h-8 w-8 text-primary-300-700" />
+      <span class:line-through={area.deleted}>{area.title}</span>
+      <button class="area-options-anchor -ml-4 btn-icon btn py-2" popovertarget={optionsId}>
+        <Ellipsis class="h-12 w-12 text-surface-700-300" />
+        <span class="sr-only">Options</span>
+      </button>
+    </h1>
+    <p>{area.notes}</p>
+  </div>
+
+  <div id={optionsId} class="rounded-base p-2" {@attach popover}>
+    {#if !area.deleted}
+      <button class="btn-primary btn" onclick={() => (area.deleted = new Date())}>
+        <Trash class="h-8 w-8 text-error-500" />
+        Delete {area.title}
+      </button>
+    {:else}
+      <button class="btn-primary btn" onclick={() => (area.deleted = undefined)}>
+        <ArchiveRestore class="h-8 w-8 text-success-500" />
+        Restore {area.title}
+      </button>
+    {/if}
+  </div>
 {/if}

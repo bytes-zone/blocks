@@ -1,4 +1,4 @@
-import { co } from 'jazz-tools';
+import { co, z } from 'jazz-tools';
 import { Project } from './project';
 
 export const Area = co.map({
@@ -6,6 +6,8 @@ export const Area = co.map({
   notes: co.richText(),
 
   projects: co.list(Project),
+
+  deleted: z.optional(z.date()),
 });
 
 export type Area = co.loaded<typeof Area>;
