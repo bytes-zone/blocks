@@ -9,13 +9,15 @@ export async function goToInbox(page: Page) {
 }
 
 export async function quickAdd(page: Page, text: string) {
-  await page.getByRole('button', { name: 'Add item' }).click();
+  await page.getByRole('button', { name: 'New item' }).click();
+  await page.getByRole('button', { name: 'Quick add' }).click();
 
   await page.getByPlaceholder('What needs doing?').fill(text);
   await page.getByPlaceholder('What needs doing?').press('Enter');
 }
 
 export async function addArea(page: Page, text: string) {
+  await page.getByRole('button', { name: 'New item' }).click();
   await page.getByRole('button', { name: 'Add area' }).click();
 
   await page.getByLabel('Title').fill(text);

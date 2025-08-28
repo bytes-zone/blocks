@@ -13,6 +13,5 @@
         - link "Home"
       - listitem:
         - link "Work"
-  - button "Add item"
-  - button "Add area"
+  - button "New item"
   - text: Not signed in!
