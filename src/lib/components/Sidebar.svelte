@@ -84,7 +84,7 @@
             {@render link(
               `/area/${area.$jazz.id}`,
               area.title?.toString(),
-              page.route.id === `/area/${area.$jazz.id}`,
+              page.route.id === '/area/[id]' && page.params.id === area.$jazz.id,
               Grid2x2,
               'text-surface-300-700',
               area.projects.length > 0 ? area.projects.length.toString() : '',
