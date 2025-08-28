@@ -23,3 +23,12 @@ test('inbox page snapshot should be accessible', async ({ page }) => {
 
   await expect(page.getByRole('main')).toMatchAriaSnapshot({ name: 'inbox.aria.yaml' });
 });
+
+test('area page snapshot should be accessible', async ({ page }) => {
+  await start(page);
+
+  await addArea(page, 'Gardening');
+  await page.getByRole('link', { name: 'Gardening' }).click();
+
+  await expect(page.getByRole('main')).toMatchAriaSnapshot({ name: 'area.aria.yaml' });
+});
