@@ -49,7 +49,7 @@
     <input type="text" placeholder="Notes" bind:value={draftNotes} />
   </label>
 
-  <button class="btn preset-filled-primary-500">
+  <button class="mt-4 btn w-full preset-filled-primary-500">
     {#if area}Save{:else}Create{/if}
   </button>
 </form>
