@@ -32,11 +32,11 @@
       <Grid_2x2 aria-hidden="true" class="h-8 w-8 text-primary-300-700" />
       <span class:line-through={area.archived}>{area.title}</span>
       <button class="area-options-anchor -ml-4 btn-icon btn py-2" popovertarget={optionsId}>
-        <Ellipsis class="h-12 w-12 text-surface-700-300" />
+        <Ellipsis class="h-12 w-12 text-surface-700-300" aria-hidden="true" />
         <span class="sr-only">Options</span>
       </button>
     </h1>
-    <p>{area.notes}</p>
+    <p>{area.notes.toString() || 'No notes'}</p>
   </div>
 
   <div id={optionsId} class="rounded-base p-2" {@attach popover}>

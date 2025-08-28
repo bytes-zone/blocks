@@ -56,7 +56,8 @@
 
   <input
     type="checkbox"
-    bind:checked={task.completed}
+    checked={task.completed}
+    onchange={(ev) => task.$jazz.set('completed', ev.currentTarget.checked)}
     aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
     class="order-1"
   />
@@ -112,7 +113,8 @@
 
       <input
         type="checkbox"
-        bind:checked={task.completed}
+        checked={task.completed}
+        onchange={(ev) => task.$jazz.set('completed', ev.currentTarget.checked)}
         aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
         class="order-1"
       />
@@ -127,7 +129,8 @@
             class="input"
             min="0"
             placeholder="Blocks"
-            bind:value={task.plannedBlocks}
+            value={task.plannedBlocks}
+            onchange={(ev) => task.$jazz.set('plannedBlocks', parseInt(ev.currentTarget.value))}
           />
         </label>
 
