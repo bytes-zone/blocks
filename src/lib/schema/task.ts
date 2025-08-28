@@ -1,5 +1,6 @@
-import { co, z } from 'jazz-tools';
+import { co, Group, z } from 'jazz-tools';
 import * as chrono from 'chrono-node';
+import { SubTask } from './subtask';
 
 export const Task = co.map({
   title: co.plainText(),
@@ -13,9 +14,8 @@ export const Task = co.map({
 
   completed: z.boolean(),
 
-  get children() {
-    return co.list(Task);
-  },
+  subtasks: co.list(SubTask),
+
   get blockers() {
     return co.list(Task);
   },
@@ -70,14 +70,19 @@ export function parseTask(input: string): DraftTask {
   return { title: title.trim(), plannedBlocks, due, wait };
 }
 
-export function createFromDraft(task: DraftTask): Task {
+export function createFromDraft(task: DraftTask, group?: Group): Task {
   return Task.create(
-    Object.assign({}, task, {
-      notes: '',
-      completed: false,
-      completedBlocks: 0,
-      children: [],
-      blockers: [],
-    }),
+    Object.assign(
+      {},
+      task,
+      {
+        notes: '',
+        completed: false,
+        completedBlocks: 0,
+        subtasks: [],
+        blockers: [],
+      },
+      group || Group.create(),
+    ),
   );
 }

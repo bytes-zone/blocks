@@ -1,12 +1,10 @@
 import { expect, test } from '@playwright/test';
+import { start, quickAdd, goToInbox } from './utils';
 
 test('you should be able to edit dates for a task', async ({ page }) => {
-  await page.goto('/');
-
-  await page.getByPlaceholder('What do you need to do?').fill('Buy milk');
-  await page.getByRole('button', { name: 'Add' }).click();
-
-  await page.getByText('Inbox (1)').click();
+  await start(page);
+  await quickAdd(page, 'Buy milk');
+  await goToInbox(page);
 
   await page.getByRole('button', { name: 'Edit Buy milk', exact: true }).click();
 

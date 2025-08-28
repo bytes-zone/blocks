@@ -1,12 +1,11 @@
 import { co, Group } from 'jazz-tools';
 import { Task } from './task';
-
-export const Profile = co.profile();
-export type Profile = co.loaded<typeof Profile>;
+import { Area } from './area';
+import { Profile } from './profile';
 
 export const Root = co.map({
   inbox: co.list(Task),
-  collection: co.list(Task),
+  areas: co.list(Area),
 });
 
 export const Account = co
@@ -21,13 +20,20 @@ export const Account = co
       account.root = Root.create(
         {
           inbox: [],
-          collection: [],
+          areas: [],
         },
         group,
       );
     }
 
-    if (account.profile === undefined) {
+    if (account.root && account.root.areas === undefined) {
+      const group = Group.create();
+      group.addMember(account.root._owner, 'admin');
+
+      account.root.areas = Root.shape.areas.create([], group);
+    }
+
+    if (!account.profile) {
       const group = Group.create();
       group.addMember('everyone', 'reader');
 

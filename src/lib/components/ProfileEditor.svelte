@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Profile } from '$lib/schema';
+  import type { Profile } from '$lib/schema/profile';
 
   const { profile }: { profile: Profile } = $props();
 </script>
@@ -12,7 +12,7 @@
       placeholder="Kermit the Frog"
       type="text"
       value={profile.name}
-      onchange={(ev) => (profile.name = ev.currentTarget.value)}
+      oninput={(ev) => (profile.name = ev.currentTarget.value)}
     />
   </label>
 </form>
