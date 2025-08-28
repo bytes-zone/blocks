@@ -130,7 +130,7 @@
 <dialog
   bind:this={newArea}
   closedby="any"
-  class="top-1/2 left-1/2 -translate-1/2 rounded-container"
+  class="top-1/2 left-1/2 -translate-1/2 rounded-container p-4"
 >
   <AreaForm
     onsave={(area) => {
