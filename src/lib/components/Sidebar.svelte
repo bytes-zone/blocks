@@ -40,53 +40,52 @@
   iconColor: string,
   rhs: string = '',
 )}
+  <!-- TODO: make this into a real component -->
   {@const CurrentIcon = icon}
-  <li class="px-4 py-1" class:bg-primary-50-950={active}>
-    <a href={url} class="flex w-full cursor-pointer items-center justify-between">
-      <div class="flex gap-2">
-        <CurrentIcon class="w-5 {iconColor}" aria-hidden="true" />
+  <li class:active>
+    <a href={url}>
+      <div class="caption">
+        <CurrentIcon class={iconColor} aria-hidden="true" style="color: {iconColor}" />
         {label}
       </div>
-      <div class="text-surface-700-300">{rhs}</div>
+      <div class="extra-info">{rhs}</div>
     </a>
   </li>
 {/snippet}
 
-<header
-  class="flex min-h-screen w-xs flex-col border-r border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950"
->
-  <div class="flex grow-1 flex-col gap-6 py-4">
+<header>
+  <div class="menu">
     <nav aria-label="primary">
-      <ol class="flex flex-col gap-2">
-        {@render link('/', 'Home', page.route.id === '/', House, 'text-surface-300-700')}
+      <ol>
+        {@render link(
+          '/',
+          'Home',
+          page.route.id === '/',
+          House,
+          'light-dark(var(--gray-8), vary(--gray-4))',
+        )}
 
         {@render link(
           '/inbox',
           'Inbox',
           page.route.id === '/inbox',
           Inbox,
-          'text-primary-300-700',
+          'var(--blue-6)',
           root?.inbox && root.inbox.length > 0 ? root.inbox.length.toString() : '',
         )}
       </ol>
     </nav>
 
     <nav aria-label="areas">
-      {#if !root?.areas}
-        <div class="flex flex-col gap-2">
-          {#each { length: 5 }}
-            <div class="mx-2 h-4 placeholder animate-pulse py-1"></div>
-          {/each}
-        </div>
-      {:else}
-        <ol class="flex flex-col gap-4">
+      {#if root?.areas}
+        <ol>
           {#each root.areas.filter((area) => !area.archived) as area (area.$jazz.id)}
             {@render link(
               `/area/${area.$jazz.id}`,
               area.title?.toString(),
               page.route.id === '/area/[id]' && page.params.id === area.$jazz.id,
               Grid2x2,
-              'text-surface-300-700',
+              'light-dark(var(--gray-8), vary(--gray-4))',
               area.projects.length > 0 ? area.projects.length.toString() : '',
             )}
           {/each}
@@ -94,18 +93,18 @@
       {/if}
     </nav>
   </div>
-  <div
-    class="flex shrink-1 items-center justify-between border-t border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900"
-  >
-    <button class="btn-icon btn" popovertarget={addId}>
-      <CirclePlus class="w-4 text-success-500" aria-hidden="true" />
+  <div class="actions shrink-1">
+    <button popovertarget={addId}>
+      <!-- intent: green -->
+      <CirclePlus aria-hidden="true" />
       <span class="sr-only">New item</span>
     </button>
 
     {#if root && account.isAuthenticated}
       <button type="button" class="btn-icon btn" onclick={() => account.logOut()}>
+        <!-- intent: mid-gray -->
+        <LogOut aria-hidden="true" />
         <span class="sr-only">Log out</span>
-        <LogOut class="text-surface-500" aria-hidden="true" />
       </button>
     {:else}
       Not signed in!
@@ -152,3 +151,68 @@
     }}
   />
 </dialog>
+
+<style>
+  header {
+    min-height: 100vh;
+    width: var(--size-xs);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-right: 1px solid light-dark(var(--gray-2), var(--gray-10));
+    background: light-dark(var(--gray-1), var(--gray-11));
+
+    & > .menu {
+      display: flex;
+      flex-direction: column;
+      gap: var(--size-4);
+      padding-top: var(--size-4);
+    }
+
+    & > .actions {
+      display: flex;
+      justify-content: space-between;
+      background: light-dark(var(--gray-2), var(--gray-10));
+      padding: var(--size-2);
+    }
+  }
+
+  nav > ol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2);
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    & > li {
+      padding: var(--size-1) var(--size-4);
+
+      &.active {
+        background-color: light-dark(var(--gray-3), var(--gray-9));
+      }
+
+      & > a {
+        color: unset;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+
+        & > .caption {
+          display: flex;
+          gap: var(--size-2);
+        }
+
+        & > .extra-info {
+          color: light-dark(var(--gray-8), var(--gray-4));
+        }
+      }
+    }
+  }
+</style>
