@@ -1,5 +1,4 @@
 - main:
   - heading "Gardening Options" [level=1]:
-    - button "Options":
-      - img
+    - button "Options"
   - paragraph
