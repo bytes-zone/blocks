@@ -1,4 +1,4 @@
-import { autoUpdate, computePosition } from '@floating-ui/dom';
+import { autoPlacement, autoUpdate, computePosition } from '@floating-ui/dom';
 import type { Attachment } from 'svelte/attachments';
 
 export const popover: Attachment<HTMLElement> = (target) => {
@@ -11,7 +11,9 @@ export const popover: Attachment<HTMLElement> = (target) => {
     if (!anchor) return;
 
     const updatePosition = () => {
-      computePosition(anchor, target).then(({ x, y }) => {
+      computePosition(anchor, target, {
+        middleware: [autoPlacement({ allowedPlacements: ['top', 'top-start', 'bottom'] })],
+      }).then(({ x, y }) => {
         Object.assign(target.style, {
           left: `${x}px`,
           top: `${y}px`,

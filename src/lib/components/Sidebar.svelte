@@ -6,6 +6,7 @@
   import QuickAdd from './QuickAdd.svelte';
   import AreaForm from './AreaForm.svelte';
   import Grid_2x2Plus from '@lucide/svelte/icons/grid-2x2-plus';
+  import { popover } from '$lib/popover';
 
   let account = new AccountCoState(Account, {
     resolve: {
@@ -26,6 +27,9 @@
 
   let quickAdd: HTMLDialogElement;
   let newArea: HTMLDialogElement;
+
+  let id = $props.id();
+  let addId = `add-${id}`;
 </script>
 
 {#snippet link(
@@ -93,14 +97,9 @@
   <div
     class="flex shrink-1 items-center justify-between border-t border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900"
   >
-    <button class="btn" onclick={() => quickAdd.showModal()}>
+    <button class="btn-icon btn" popovertarget={addId}>
       <CirclePlus class="w-4 text-success-500" aria-hidden="true" />
-      <span class="sr-only">Add item</span>
-    </button>
-
-    <button class="btn" onclick={() => newArea.showModal()}>
-      <Grid_2x2Plus class="w-4 text-success-500" aria-hidden="true" />
-      <span class="sr-only">Add area</span>
+      <span class="sr-only">New item</span>
     </button>
 
     {#if root && account.isAuthenticated}
@@ -113,6 +112,20 @@
     {/if}
   </div>
 </header>
+
+<div id={addId} class="rounded-base" {@attach popover}>
+  <div class="flex flex-col gap-2 p-2">
+    <button class="btn" onclick={() => quickAdd.showModal()}>
+      <Inbox class="w-4 text-success-500" aria-hidden="true" />
+      Quick add
+    </button>
+
+    <button class="btn" onclick={() => newArea.showModal()}>
+      <Grid_2x2Plus class="w-4 text-success-500" aria-hidden="true" />
+      Add area
+    </button>
+  </div>
+</div>
 
 <dialog
   bind:this={quickAdd}
