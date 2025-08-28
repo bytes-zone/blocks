@@ -104,7 +104,7 @@
           bind:value={
             () => task.title?.toString(),
             (val) => {
-              if (val) task.title?.applyDiff(val);
+              if (val) task.title?.$jazz.applyDiff(val);
             }
           }
         />
@@ -140,7 +140,7 @@
             bind:value={waitDraft}
             onblur={parseAndSave(
               waitDraft,
-              (v) => (task.wait = v),
+              (v) => task.$jazz.set('wait', v),
               () => (waitDraft = task.wait?.toLocaleString() || ''),
             )}
           />
@@ -155,7 +155,7 @@
             bind:value={dueDraft}
             onblur={parseAndSave(
               dueDraft,
-              (v) => (task.due = v),
+              (v) => task.$jazz.set('due', v),
               () => (dueDraft = task.due?.toLocaleString() || ''),
             )}
           />

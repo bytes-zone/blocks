@@ -17,31 +17,37 @@ export const Account = co
     if (account.root === undefined) {
       const group = Group.create();
 
-      account.root = Root.create(
-        {
-          inbox: [],
-          areas: [],
-        },
-        group,
+      account.$jazz.set(
+        'root',
+        Root.create(
+          {
+            inbox: [],
+            areas: [],
+          },
+          group,
+        ),
       );
     }
 
     if (account.root && account.root.areas === undefined) {
       const group = Group.create();
-      group.addMember(account.root._owner, 'admin');
+      group.addMember(account.root.$jazz.owner, 'admin');
 
-      account.root.areas = Root.shape.areas.create([], group);
+      account.root.$jazz.set('areas', Root.shape.areas.create([], group));
     }
 
     if (!account.profile) {
       const group = Group.create();
       group.addMember('everyone', 'reader');
 
-      account.profile = Profile.create(
-        {
-          name: '',
-        },
-        group,
+      account.$jazz.set(
+        'profile',
+        Profile.create(
+          {
+            name: '',
+          },
+          group,
+        ),
       );
     }
   });

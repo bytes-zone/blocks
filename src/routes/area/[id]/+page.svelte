@@ -41,12 +41,12 @@
 
   <div id={optionsId} class="rounded-base p-2" {@attach popover}>
     {#if !area.archived}
-      <button class="btn-primary btn" onclick={() => (area.archived = new Date())}>
+      <button class="btn-primary btn" onclick={() => area.$jazz.set('archived', new Date())}>
         <Archive class="h-8 w-8 text-error-500" />
         Archive {area.title}
       </button>
     {:else}
-      <button class="btn-primary btn" onclick={() => (area.archived = undefined)}>
+      <button class="btn-primary btn" onclick={() => area.$jazz.delete('archived')}>
         <ArchiveRestore class="h-8 w-8 text-success-500" />
         Restore {area.title}
       </button>

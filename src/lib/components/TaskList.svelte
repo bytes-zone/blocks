@@ -7,7 +7,7 @@
 </script>
 
 <ol class="flex flex-col gap-2">
-  {#each list as task (task?.id)}
+  {#each list as task (task?.$jazz.id)}
     {#if task}
       <li>
         <SingleTask {task} />

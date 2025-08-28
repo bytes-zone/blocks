@@ -76,11 +76,11 @@
         </div>
       {:else}
         <ol class="flex flex-col gap-4">
-          {#each root.areas.filter((area) => !area.archived) as area (area.id)}
+          {#each root.areas.filter((area) => !area.archived) as area (area.$jazz.id)}
             {@render link(
-              `/area/${area.id}`,
+              `/area/${area.$jazz.id}`,
               area.title?.toString(),
-              page.route.id === `/area/${area.id}`,
+              page.route.id === `/area/${area.$jazz.id}`,
               Grid2x2,
               'text-surface-300-700',
               area.projects.length > 0 ? area.projects.length.toString() : '',
@@ -121,7 +121,7 @@
 >
   <QuickAdd
     onadd={(task) => {
-      if (root?.inbox) root.inbox.push(task);
+      if (root?.inbox) root.inbox.$jazz.push(task);
       quickAdd.close();
     }}
   />
@@ -134,7 +134,7 @@
 >
   <AreaForm
     onsave={(area) => {
-      if (root?.areas) root.areas.push(area);
+      if (root?.areas) root.areas.$jazz.push(area);
       newArea.close();
     }}
   />
