@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
   import { Area } from '$lib/schema/area';
-  import { ArchiveRestore, Ellipsis, Trash } from '@lucide/svelte';
+  import { Archive, ArchiveRestore, Ellipsis } from '@lucide/svelte';
   import Grid_2x2 from '@lucide/svelte/icons/grid-2x2';
   import { CoState } from 'jazz-tools/svelte';
   import { popover } from '$lib/popover';
@@ -30,7 +30,7 @@
   <div class="flex flex-col gap-4">
     <h1 class="flex items-center gap-4 h3">
       <Grid_2x2 aria-hidden="true" class="h-8 w-8 text-primary-300-700" />
-      <span class:line-through={area.deleted}>{area.title}</span>
+      <span class:line-through={area.archived}>{area.title}</span>
       <button class="area-options-anchor -ml-4 btn-icon btn py-2" popovertarget={optionsId}>
         <Ellipsis class="h-12 w-12 text-surface-700-300" />
         <span class="sr-only">Options</span>
@@ -40,13 +40,13 @@
   </div>
 
   <div id={optionsId} class="rounded-base p-2" {@attach popover}>
-    {#if !area.deleted}
-      <button class="btn-primary btn" onclick={() => (area.deleted = new Date())}>
-        <Trash class="h-8 w-8 text-error-500" />
-        Delete {area.title}
+    {#if !area.archived}
+      <button class="btn-primary btn" onclick={() => (area.archived = new Date())}>
+        <Archive class="h-8 w-8 text-error-500" />
+        Archive {area.title}
       </button>
     {:else}
-      <button class="btn-primary btn" onclick={() => (area.deleted = undefined)}>
+      <button class="btn-primary btn" onclick={() => (area.archived = undefined)}>
         <ArchiveRestore class="h-8 w-8 text-success-500" />
         Restore {area.title}
       </button>

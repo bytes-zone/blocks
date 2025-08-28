@@ -7,7 +7,7 @@ export const Area = co.map({
 
   projects: co.list(Project),
 
-  deleted: z.optional(z.date()),
+  archived: z.optional(z.date()),
 });
 
 export type Area = co.loaded<typeof Area>;
