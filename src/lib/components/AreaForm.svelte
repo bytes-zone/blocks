@@ -6,8 +6,8 @@
     area,
     onsave,
   }: {
-    area?: co.loaded<typeof Area, { title: true; notes: true }>;
-    onsave: (area: Area) => void;
+    area?: co.loaded<typeof Area, { title: true; notes: true; projects: true }>;
+    onsave: (area: co.loaded<typeof Area, { title: true; notes: true; projects: true }>) => void;
   } = $props();
 
   let draftTitle = $state(area?.title?.toString() || '');
@@ -17,8 +17,8 @@
     e.preventDefault();
 
     if (area) {
-      area.title.applyDiff(draftTitle);
-      area.notes.applyDiff(draftNotes);
+      area.title.$jazz.applyDiff(draftTitle);
+      area.notes.$jazz.applyDiff(draftNotes);
       onsave(area);
     } else {
       onsave(

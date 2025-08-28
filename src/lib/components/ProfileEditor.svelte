@@ -12,7 +12,7 @@
       placeholder="Kermit the Frog"
       type="text"
       value={profile.name}
-      oninput={(ev) => (profile.name = ev.currentTarget.value)}
+      oninput={(ev) => profile.$jazz.set('name', ev.currentTarget.value)}
     />
   </label>
 </form>
