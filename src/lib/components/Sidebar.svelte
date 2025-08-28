@@ -76,7 +76,7 @@
         </div>
       {:else}
         <ol class="flex flex-col gap-4">
-          {#each root.areas as area (area.id)}
+          {#each root.areas.filter((area) => !area.deleted) as area (area.id)}
             {@render link(
               `/area/${area.id}`,
               area.title?.toString(),
