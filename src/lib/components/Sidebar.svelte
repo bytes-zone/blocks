@@ -6,8 +6,8 @@
   import QuickAdd from './QuickAdd.svelte';
   import AreaForm from './AreaForm.svelte';
   import Grid_2x2Plus from '@lucide/svelte/icons/grid-2x2-plus';
-  import { popover } from '$lib/popover';
   import SidebarLink from './SidebarLink.svelte';
+  import MenuPopover from './MenuPopover.svelte';
 
   let account = new AccountCoState(Account, {
     resolve: {
@@ -93,19 +93,17 @@
   </div>
 </header>
 
-<div id={addId} class="rounded-base" {@attach popover}>
-  <div class="flex flex-col gap-2 p-2">
-    <button class="btn" onclick={() => quickAdd.showModal()}>
-      <Inbox class="w-4 text-success-500" aria-hidden="true" />
-      Quick add
-    </button>
+<MenuPopover id={addId}>
+  <button class="btn" onclick={() => quickAdd.showModal()}>
+    <Inbox class="w-4 text-success-500" aria-hidden="true" />
+    Quick add
+  </button>
 
-    <button class="btn" onclick={() => newArea.showModal()}>
-      <Grid_2x2Plus class="w-4 text-success-500" aria-hidden="true" />
-      Add area
-    </button>
-  </div>
-</div>
+  <button class="btn" onclick={() => newArea.showModal()}>
+    <Grid_2x2Plus class="w-4 text-success-500" aria-hidden="true" />
+    Add area
+  </button>
+</MenuPopover>
 
 <dialog
   bind:this={quickAdd}

@@ -5,6 +5,7 @@
   import Grid_2x2 from '@lucide/svelte/icons/grid-2x2';
   import { CoState } from 'jazz-tools/svelte';
   import { popover } from '$lib/popover';
+  import MenuPopover from '$lib/components/MenuPopover.svelte';
 
   let state = $derived(
     new CoState(Area, page.params.id, {
@@ -39,7 +40,7 @@
     <p>{area.notes.toString() || 'No notes'}</p>
   </div>
 
-  <div id={optionsId} class="rounded-base p-2" {@attach popover}>
+  <MenuPopover id={optionsId}>
     {#if !area.archived}
       <button class="btn-primary btn" onclick={() => area.$jazz.set('archived', new Date())}>
         <Archive class="h-8 w-8 text-error-500" />
@@ -51,5 +52,5 @@
         Restore {area.title}
       </button>
     {/if}
-  </div>
+  </MenuPopover>
 {/if}
