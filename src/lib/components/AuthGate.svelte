@@ -14,17 +14,16 @@
 {#if authState === 'signedIn' || allowAnonymous}
   {@render children()}
 {:else}
-  <div class="inset-0 flex min-h-screen items-center justify-center">
-    <div class="flex flex-col gap-6 card preset-tonal-primary p-8">
+  <div class="centerer">
+    <div class="auth-gate">
       <h1 class="h1">Hi! 👋</h1>
       <p>Please register or log in to continue.</p>
 
-      <button class="btn preset-filled-primary-500" onclick={() => current.logIn()}>Log In</button>
+      <button onclick={() => current.logIn()}>Log In</button>
 
-      <hr class="hr" />
+      <p>or</p>
 
       <form
-        class="form flex grow-0 flex-col gap-4"
         onsubmit={(ev) => {
           ev.preventDefault();
 
@@ -33,20 +32,52 @@
           current.signUp(email);
         }}
       >
-        <label class="label">
-          <span class="label-text">Email</span>
-          <input
-            type="email"
-            class="input bg-surface-50-950 placeholder:text-surface-300-700"
-            placeholder="you@youremail.com"
-            bind:value={email}
-          />
+        <label>
+          <span>Email</span>
+          <input type="email" placeholder="you@youremail.com" bind:value={email} />
         </label>
 
-        <button type="submit" class="btn preset-filled-primary-500" disabled={!emailIsValid}>
-          Register
-        </button>
+        <button type="submit" disabled={!emailIsValid}>Register</button>
       </form>
     </div>
   </div>
 {/if}
+
+<style>
+  .centerer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .auth-gate {
+    width: min(100vw, var(--size-sm));
+
+    box-shadow: var(--shadow-3);
+
+    background-color: var(--blue-11);
+    border-radius: var(--size-2);
+    padding: var(--size-2);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-6);
+
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2);
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: var(--size-2);
+    }
+  }
+</style>
