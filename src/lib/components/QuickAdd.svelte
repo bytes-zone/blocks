@@ -7,12 +7,11 @@
 </script>
 
 <form
-  class="mx-auto rounded-base bg-gray-100 dark:bg-gray-900"
   onsubmit={(e) => {
     e.preventDefault();
     onadd(createFromDraft(parseTask(text)));
     text = '';
   }}
 >
-  <input type="text" class="input w-sm text-xl" placeholder="What needs doing?" bind:value={text} />
+  <input type="text" placeholder="What needs doing?" bind:value={text} />
 </form>
