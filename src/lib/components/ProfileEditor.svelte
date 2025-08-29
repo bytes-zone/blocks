@@ -4,9 +4,9 @@
   const { profile }: { profile: Profile } = $props();
 </script>
 
-<form class="w-lg">
-  <label class="label">
-    <span class="label-text">Name</span>
+<form>
+  <label>
+    <span>Name</span>
     <input
       class="input"
       placeholder="Kermit the Frog"
