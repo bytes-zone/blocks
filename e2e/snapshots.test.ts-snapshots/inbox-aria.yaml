@@ -6,17 +6,18 @@
       - text: < 1 block planned due in 2 days
       - button "Edit Buy milk"
       - dialog:
-        - text: Title
-        - textbox "Title": Buy milk
-        - checkbox "Mark Buy milk complete"
-        - text: Planned Blocks
-        - spinbutton "Planned Blocks"
-        - text: Wait
-        - textbox "Wait"
-        - text: Due
-        - textbox "Due": /\d+\/\d+\/\d+, \d+:\d+:\d+ [AP]M/
-        - text: Notes
-        - textbox "Notes"
+        - group "Basic Information":
+          - text: Basic Information Completed
+          - checkbox "Mark Buy milk complete"
+          - textbox "Title": Buy milk
+        - group "Planning":
+          - text: Planning Planned Blocks
+          - spinbutton "Planned Blocks"
+          - textbox "Wait"
+          - textbox "Due": /\d\/\d+\/\d+, \d:\d+:\d+ [AP]M/
+        - group:
+          - text: Notes
+          - textbox "Notes"
     - listitem:
       - text: Wash the car
       - checkbox "Mark Wash the car complete"
