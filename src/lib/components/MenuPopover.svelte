@@ -15,7 +15,8 @@
   aside {
     padding: var(--box-padding);
     border-radius: var(--box-radius);
-    background: light-dark(var(--gray-3), var(--gray-9));
+    background: var(--gray-10);
+    color: var(--gray-2);
 
     & > .menu-items {
       display: flex;
