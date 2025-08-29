@@ -50,7 +50,7 @@
     <textarea placeholder="Notes" bind:value={draftNotes}></textarea>
   </label>
 
-  <FormButton>
+  <FormButton type="submit">
     {#if area}Save{:else}Create{/if}
   </FormButton>
 </form>
