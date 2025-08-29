@@ -6,7 +6,7 @@
   let { list }: { list: co.loaded<co.List<typeof Task>> } = $props();
 </script>
 
-<ol class="flex flex-col gap-2">
+<ol>
   {#each list as task (task?.$jazz.id)}
     {#if task}
       <li>
@@ -15,3 +15,10 @@
     {/if}
   {/each}
 </ol>
+
+<style>
+  ol {
+    list-style-type: none;
+    padding: none;
+  }
+</style>
