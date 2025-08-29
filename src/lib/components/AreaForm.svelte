@@ -38,18 +38,32 @@
   }
 </script>
 
-<form class="form" onsubmit={save}>
-  <label class="label">
-    <span class="label-text">Title</span>
+<form onsubmit={save}>
+  <label>
+    <span>Title</span>
     <input type="text" placeholder="Title" bind:value={draftTitle} />
   </label>
 
-  <label class="label">
-    <span class="label-text">Notes</span>
-    <input type="text" placeholder="Notes" bind:value={draftNotes} />
+  <label>
+    <span>Notes</span>
+    <textarea placeholder="Notes" bind:value={draftNotes}></textarea>
   </label>
 
   <button class="mt-4 btn w-full preset-filled-primary-500">
     {#if area}Save{:else}Create{/if}
   </button>
 </form>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-3);
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-1);
+  }
+</style>
