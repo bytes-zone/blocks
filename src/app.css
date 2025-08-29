@@ -1,6 +1,14 @@
 @import 'open-props/postcss/normalize';
 @import 'open-props/postcss/buttons';
 
+:root {
+  --between-items: var(--size-2);
+  --between-groups: var(--size-4);
+
+  --box-padding: var(--size-2);
+  --box-radius: var(--size-2);
+}
+
 dialog {
   /* override some browser styles */
   max-width: unset;

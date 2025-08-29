@@ -13,14 +13,14 @@
 
 <style>
   aside {
-    padding: var(--size-2);
-    border-radius: var(--size-2);
+    padding: var(--box-padding);
+    border-radius: var(--box-radius);
     background: light-dark(var(--gray-3), var(--gray-9));
 
     & > .menu-items {
       display: flex;
       flex-direction: column;
-      gap: var(--size-2);
+      gap: var(--between-items);
     }
   }
 </style>

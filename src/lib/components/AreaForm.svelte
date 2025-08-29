@@ -58,7 +58,7 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: var(--size-3);
+    gap: var(--between-items);
   }
 
   label {

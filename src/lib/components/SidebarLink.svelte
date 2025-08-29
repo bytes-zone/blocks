@@ -64,7 +64,7 @@
 
     & > .caption {
       display: flex;
-      gap: var(--size-2);
+      gap: var(--between-items);
     }
 
     & > .extra-info {

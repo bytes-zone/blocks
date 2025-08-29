@@ -57,8 +57,8 @@
     box-shadow: var(--shadow-3);
 
     background-color: var(--blue-11);
-    border-radius: var(--size-2);
-    padding: var(--size-2);
+    padding: var(--box-padding);
+    border-radius: var(--box-radius);
 
     display: flex;
     flex-direction: column;
@@ -72,12 +72,12 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: var(--size-2);
+    gap: var(--between-items);
 
     label {
       display: flex;
       flex-direction: column;
-      gap: var(--size-2);
+      gap: var(--between-items);
     }
   }
 </style>

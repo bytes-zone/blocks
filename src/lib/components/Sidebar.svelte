@@ -137,7 +137,7 @@
     & > .menu {
       display: flex;
       flex-direction: column;
-      gap: var(--size-4);
+      gap: var(--between-groups);
       padding-top: var(--size-4);
     }
 
@@ -145,14 +145,14 @@
       display: flex;
       justify-content: space-between;
       background: light-dark(var(--gray-2), var(--gray-10));
-      padding: var(--size-2);
+      padding: var(--box-padding);
     }
   }
 
   nav > ol {
     display: flex;
     flex-direction: column;
-    gap: var(--size-2);
+    gap: var(--between-items);
 
     list-style-type: none;
     margin: 0;
