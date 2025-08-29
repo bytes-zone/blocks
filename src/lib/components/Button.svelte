@@ -33,13 +33,7 @@
     background: none;
 
     &:hover {
-      @media (--OSdark) {
-        border-color: var(--gray-8);
-      }
-
-      @media (--OSlight) {
-        border-color: var(--gray-4);
-      }
+      border-color: var(--gray-6);
     }
 
     @media (--motionOK) {
