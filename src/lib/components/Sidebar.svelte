@@ -65,8 +65,7 @@
               label={area.title?.toString()}
               active={page.route.id === '/area/[id]' && page.params.id === area.$jazz.id}
               icon={Grid2x2}
-              iconColorDark="--gray-8"
-              iconColorLight="--gray-4"
+              iconColor="--gray-6"
               rhs={area.projects.length > 0 ? area.projects.length.toString() : ''}
             />
           {/each}
