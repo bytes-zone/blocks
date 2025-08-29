@@ -1,6 +1,12 @@
 @import 'open-props/postcss/normalize';
 @import 'open-props/postcss/buttons';
 
+dialog {
+  /* override some browser styles */
+  max-width: unset;
+  max-height: unset;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

@@ -192,10 +192,4 @@
     cursor: pointer;
     z-index: 1;
   }
-
-  dialog {
-    /* override some browser styles */
-    max-width: unset;
-    max-height: unset;
-  }
 </style>
