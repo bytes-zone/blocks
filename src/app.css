@@ -1,5 +1,4 @@
 @import 'open-props/postcss/normalize';
-@import 'open-props/postcss/buttons';
 
 :root {
   --between-items: var(--size-3);
