@@ -23,6 +23,7 @@
         "eslint-plugin-svelte": "3.11.0",
         "globals": "16.3.0",
         "jazz-tools": "0.18.1",
+        "jiti": "2.5.1",
         "open-props": "1.7.16",
         "playwright": "1.55.0",
         "postcss-custom-media": "11.0.6",
@@ -490,6 +491,8 @@
     "isexe": ["isexe@2.0.0", "", {}, "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw=="],
 
     "jazz-tools": ["jazz-tools@0.18.1", "", { "dependencies": { "@manuscripts/prosemirror-recreate-steps": "^0.1.4", "@scure/base": "1.2.1", "@scure/bip39": "^1.3.0", "@tiptap/core": "^2.12.0", "clsx": "^2.0.0", "cojson": "0.18.1", "cojson-storage-indexeddb": "0.18.1", "cojson-transport-ws": "0.18.1", "fast-myers-diff": "^3.2.0", "goober": "^2.1.16", "prosemirror-example-setup": "^1.2.2", "prosemirror-menu": "^1.2.4", "prosemirror-model": "^1.21.1", "prosemirror-schema-basic": "^1.2.2", "prosemirror-state": "^1.4.3", "prosemirror-transform": "^1.9.0", "zod": "3.25.76" }, "peerDependencies": { "@bam.tech/react-native-image-resizer": "*", "@op-engineering/op-sqlite": "*", "@react-native-community/netinfo": "*", "better-auth": "^1.3.0", "expo-file-system": "*", "expo-secure-store": "*", "expo-sqlite": "*", "react": "*", "react-dom": "*", "react-native": "*", "react-native-fast-encoder": "^0.2.0", "react-native-mmkv": "^3.3.0", "react-native-nitro-modules": "^0.26.4", "react-native-quick-crypto": "^1.0.0-beta.18", "svelte": "^5.0.0" }, "optionalPeers": ["@bam.tech/react-native-image-resizer", "@op-engineering/op-sqlite", "@react-native-community/netinfo", "better-auth", "expo-file-system", "expo-secure-store", "expo-sqlite", "react", "react-dom", "react-native", "react-native-fast-encoder", "react-native-mmkv", "react-native-nitro-modules", "react-native-quick-crypto", "svelte"] }, "sha512-q+k8TBVjjzY065/u6OXJOWOyZN214T5wvziPc31WA3U+WCjqbejAynSydnKEcoSOiAA2OcP5bhvPYyQKYNypdw=="],
+
+    "jiti": ["jiti@2.5.1", "", { "bin": { "jiti": "lib/jiti-cli.mjs" } }, "sha512-twQoecYPiVA5K/h6SxtORw/Bs3ar+mLUtoPSc7iMXzQzK8d7eJ/R09wmTwAjiamETn1cXYPGfNnu7DMoHgu12w=="],
 
     "js-tokens": ["js-tokens@4.0.0", "", {}, "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="],
 
