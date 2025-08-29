@@ -74,7 +74,7 @@
       {/if}
     </nav>
   </div>
-  <div class="actions shrink-1">
+  <div class="actions">
     <button popovertarget={addId}>
       <!-- intent: green -->
       <CirclePlus aria-hidden="true" />
@@ -82,7 +82,7 @@
     </button>
 
     {#if root && account.isAuthenticated}
-      <button type="button" class="btn-icon btn" onclick={() => account.logOut()}>
+      <button type="button" onclick={() => account.logOut()}>
         <!-- intent: mid-gray -->
         <LogOut aria-hidden="true" />
         <span class="sr-only">Log out</span>
@@ -94,22 +94,18 @@
 </header>
 
 <MenuPopover id={addId}>
-  <button class="btn" onclick={() => quickAdd.showModal()}>
-    <Inbox class="w-4 text-success-500" aria-hidden="true" />
+  <button onclick={() => quickAdd.showModal()}>
+    <Inbox aria-hidden="true" />
     Quick add
   </button>
 
-  <button class="btn" onclick={() => newArea.showModal()}>
-    <Grid_2x2Plus class="w-4 text-success-500" aria-hidden="true" />
+  <button onclick={() => newArea.showModal()}>
+    <Grid_2x2Plus aria-hidden="true" />
     Add area
   </button>
 </MenuPopover>
 
-<dialog
-  bind:this={quickAdd}
-  closedby="any"
-  class="top-1/2 left-1/2 -translate-1/2 rounded-container"
->
+<dialog bind:this={quickAdd} closedby="any">
   <QuickAdd
     onadd={(task) => {
       if (root?.inbox) root.inbox.$jazz.push(task);
@@ -118,11 +114,7 @@
   />
 </dialog>
 
-<dialog
-  bind:this={newArea}
-  closedby="any"
-  class="top-1/2 left-1/2 -translate-1/2 rounded-container p-4"
->
+<dialog bind:this={newArea} closedby="any">
   <AreaForm
     onsave={(area) => {
       if (root?.areas) root.areas.$jazz.push(area);
