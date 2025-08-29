@@ -7,6 +7,7 @@
   import AreaForm from './AreaForm.svelte';
   import Grid_2x2Plus from '@lucide/svelte/icons/grid-2x2-plus';
   import { popover } from '$lib/popover';
+  import SidebarLink from './SidebarLink.svelte';
 
   let account = new AccountCoState(Account, {
     resolve: {
@@ -32,47 +33,26 @@
   let addId = `add-${id}`;
 </script>
 
-{#snippet link(
-  url: string,
-  label: string,
-  active: boolean,
-  icon: typeof Icon,
-  iconColor: string,
-  rhs: string = '',
-)}
-  <!-- TODO: make this into a real component -->
-  {@const CurrentIcon = icon}
-  <li class:active>
-    <a href={url}>
-      <div class="caption">
-        <CurrentIcon class={iconColor} aria-hidden="true" style="color: {iconColor}" />
-        {label}
-      </div>
-      <div class="extra-info">{rhs}</div>
-    </a>
-  </li>
-{/snippet}
-
 <header>
   <div class="menu">
     <nav aria-label="primary">
       <ol>
-        {@render link(
-          '/',
-          'Home',
-          page.route.id === '/',
-          House,
-          'light-dark(var(--gray-8), vary(--gray-4))',
-        )}
+        <SidebarLink
+          href="/"
+          label="Home"
+          active={page.route.id === '/'}
+          icon={House}
+          iconColorDark="--gray-4"
+          iconColorLight="--gray-8"
+        />
 
-        {@render link(
-          '/inbox',
-          'Inbox',
-          page.route.id === '/inbox',
-          Inbox,
-          'var(--blue-6)',
-          root?.inbox && root.inbox.length > 0 ? root.inbox.length.toString() : '',
-        )}
+        <SidebarLink
+          href="/inbox"
+          label="Inbox"
+          active={page.route.id === '/inbox'}
+          icon={Inbox}
+          iconColor="--blue-6"
+        />
       </ol>
     </nav>
 
@@ -80,14 +60,15 @@
       {#if root?.areas}
         <ol>
           {#each root.areas.filter((area) => !area.archived) as area (area.$jazz.id)}
-            {@render link(
-              `/area/${area.$jazz.id}`,
-              area.title?.toString(),
-              page.route.id === '/area/[id]' && page.params.id === area.$jazz.id,
-              Grid2x2,
-              'light-dark(var(--gray-8), vary(--gray-4))',
-              area.projects.length > 0 ? area.projects.length.toString() : '',
-            )}
+            <SidebarLink
+              href={`/area/${area.$jazz.id}`}
+              label={area.title?.toString()}
+              active={page.route.id === '/area/[id]' && page.params.id === area.$jazz.id}
+              icon={Grid2x2}
+              iconColorDark="--gray-8"
+              iconColorLight="--gray-4"
+              rhs={area.projects.length > 0 ? area.projects.length.toString() : ''}
+            />
           {/each}
         </ol>
       {/if}
@@ -187,32 +168,5 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-
-    & > li {
-      padding: var(--size-1) var(--size-4);
-
-      &.active {
-        background-color: light-dark(var(--gray-3), var(--gray-9));
-      }
-
-      & > a {
-        color: unset;
-        width: 100%;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        text-decoration: none;
-
-        & > .caption {
-          display: flex;
-          gap: var(--size-2);
-        }
-
-        & > .extra-info {
-          color: light-dark(var(--gray-8), var(--gray-4));
-        }
-      }
-    }
   }
 </style>
