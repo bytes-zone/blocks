@@ -2,11 +2,11 @@
 @import 'open-props/postcss/buttons';
 
 :root {
-  --between-items: var(--size-2);
-  --between-groups: var(--size-4);
+  --between-items: var(--size-3);
+  --between-groups: var(--size-6);
 
-  --box-padding: var(--size-2);
-  --box-radius: var(--size-2);
+  --box-padding: var(--size-3);
+  --box-radius: var(--size-3);
 }
 
 dialog {
