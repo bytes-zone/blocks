@@ -52,7 +52,7 @@
     style="order: -1"
   />
 
-  <Tag icon={Cuboid} theme="primary" implicit={task.plannedBlocks == 0}>
+  <Tag icon={Cuboid} theme="blue" implicit={task.plannedBlocks == 0}>
     {#if task.plannedBlocks > 0 || task.completedBlocks > 0}
       {task.completedBlocks} <span class="sr-only">blocks completed</span> / {task.plannedBlocks}
       <span class="sr-only">blocks planned</span>
@@ -62,14 +62,14 @@
   </Tag>
 
   {#if task.wait && task.wait > now}
-    <Tag icon={ClockFading} theme="surface">
+    <Tag icon={ClockFading} theme="gray">
       <span class="sr-only">start</span>
       {reldate(task.wait)}
     </Tag>
   {/if}
 
   {#if task.due && task.due > now}
-    <Tag icon={ClockAlert} theme="warning">
+    <Tag icon={ClockAlert} theme="yellow">
       <span class="sr-only">due</span>
       {reldate(task.due)}
     </Tag>
