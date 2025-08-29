@@ -40,11 +40,12 @@
 
   main {
     margin: 0 auto;
+    min-width: var(--size-sm);
     max-width: var(--size-content-3);
     padding: var(--size-4);
 
-    @media (--lg-n-above) {
-      min-width: var(--size-sm);
+    @media (--xl-n-above) {
+      min-width: var(--size-lg);
       padding: var(--size-8) var(--size-8) 0;
     }
   }
