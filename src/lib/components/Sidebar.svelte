@@ -53,6 +53,7 @@
           active={page.route.id === '/inbox'}
           icon={Inbox}
           iconColor="--blue-6"
+          rhs={account.current?.root?.inbox?.length?.toString()}
         />
       </ol>
     </nav>
