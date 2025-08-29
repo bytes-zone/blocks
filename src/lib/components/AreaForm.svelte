@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Area } from '$lib/schema/area';
   import { co, Group } from 'jazz-tools';
+  import FormButton from '$lib/components/FormButton.svelte';
 
   const {
     area,
@@ -38,18 +39,32 @@
   }
 </script>
 
-<form class="form" onsubmit={save}>
-  <label class="label">
-    <span class="label-text">Title</span>
+<form onsubmit={save}>
+  <label>
+    <span>Title</span>
     <input type="text" placeholder="Title" bind:value={draftTitle} />
   </label>
 
-  <label class="label">
-    <span class="label-text">Notes</span>
-    <input type="text" placeholder="Notes" bind:value={draftNotes} />
+  <label>
+    <span>Notes</span>
+    <textarea placeholder="Notes" bind:value={draftNotes}></textarea>
   </label>
 
-  <button class="mt-4 btn w-full preset-filled-primary-500">
+  <FormButton type="submit">
     {#if area}Save{:else}Create{/if}
-  </button>
+  </FormButton>
 </form>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--between-items);
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-1);
+  }
+</style>

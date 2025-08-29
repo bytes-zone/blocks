@@ -4,7 +4,8 @@
   import { Archive, ArchiveRestore, Ellipsis } from '@lucide/svelte';
   import Grid_2x2 from '@lucide/svelte/icons/grid-2x2';
   import { CoState } from 'jazz-tools/svelte';
-  import { popover } from '$lib/popover';
+  import MenuPopover from '$lib/components/MenuPopover.svelte';
+  import Button from '$lib/components/Button.svelte';
 
   let state = $derived(
     new CoState(Area, page.params.id, {
@@ -27,29 +28,45 @@
 {:else if area === null}
   <p>Area not found or unaccessible by your account.</p>
 {:else}
-  <div class="flex flex-col gap-4">
-    <h1 class="flex items-center gap-4 h3">
-      <Grid_2x2 aria-hidden="true" class="h-8 w-8 text-primary-300-700" />
+  <div class="area">
+    <h1>
+      <Grid_2x2 aria-hidden="true" size="0.9em" />
       <span class:line-through={area.archived}>{area.title}</span>
-      <button class="area-options-anchor -ml-4 btn-icon btn py-2" popovertarget={optionsId}>
-        <Ellipsis class="h-12 w-12 text-surface-700-300" aria-hidden="true" />
+      <Button popovertarget={optionsId}>
+        <Ellipsis aria-hidden="true" />
         <span class="sr-only">Options</span>
-      </button>
+      </Button>
     </h1>
     <p>{area.notes.toString() || 'No notes'}</p>
   </div>
 
-  <div id={optionsId} class="rounded-base p-2" {@attach popover}>
+  <MenuPopover id={optionsId}>
     {#if !area.archived}
-      <button class="btn-primary btn" onclick={() => area.$jazz.set('archived', new Date())}>
-        <Archive class="h-8 w-8 text-error-500" />
+      <Button onclick={() => area.$jazz.set('archived', new Date())}>
+        <Archive />
         Archive {area.title}
-      </button>
+      </Button>
     {:else}
-      <button class="btn-primary btn" onclick={() => area.$jazz.delete('archived')}>
-        <ArchiveRestore class="h-8 w-8 text-success-500" />
+      <Button onclick={() => area.$jazz.delete('archived')}>
+        <ArchiveRestore />
         Restore {area.title}
-      </button>
+      </Button>
     {/if}
-  </div>
+  </MenuPopover>
 {/if}
+
+<style>
+  .area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--between-items);
+  }
+
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: var(--between-items);
+    font-size: var(--font-size-6);
+    max-inline-size: var(--size-header-3);
+  }
+</style>

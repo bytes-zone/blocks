@@ -1,8 +1,30 @@
 <script lang="ts">
   import type { Icon } from '@lucide/svelte';
   import type { Snippet } from 'svelte';
+  import Colors from 'open-props/src/colors';
 
-  type Theme = 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'error' | 'surface';
+  type Theme =
+    | 'gray'
+    | 'stone'
+    | 'red'
+    | 'pink'
+    | 'purple'
+    | 'violet'
+    | 'indigo'
+    | 'blue'
+    | 'cyan'
+    | 'teal'
+    | 'green'
+    | 'lime'
+    | 'yellow'
+    | 'orange'
+    | 'choco'
+    | 'brown'
+    | 'sand'
+    | 'camo'
+    | 'jungle';
+
+  type Shade = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
   const {
     theme,
@@ -16,80 +38,46 @@
     icon: typeof Icon;
   } = $props();
 
-  type Style = {
-    implicitBorder: string;
-    explicitBorder: string;
-    implicitBg: string;
-    explicitBg: string;
-    iconColor: string;
-  };
+  const color = (num: Shade) => Colors[`--${theme}-${num}`];
 
-  const styles: Record<Theme, Style> = {
-    primary: {
-      implicitBorder: 'border-primary-200-800',
-      explicitBorder: 'border-primary-500',
-      implicitBg: 'bg-primary-200-800',
-      explicitBg: 'bg-primary-500',
-      iconColor: 'text-primary-50-950',
-    },
-    secondary: {
-      implicitBorder: 'border-secondary-200-800',
-      explicitBorder: 'border-secondary-500',
-      implicitBg: 'bg-secondary-200-800',
-      explicitBg: 'bg-secondary-500',
-      iconColor: 'text-secondary-50-950',
-    },
-    tertiary: {
-      implicitBorder: 'border-tertiary-200-800',
-      explicitBorder: 'border-tertiary-500',
-      implicitBg: 'bg-tertiary-200-800',
-      explicitBg: 'bg-tertiary-500',
-      iconColor: 'text-tertiary-50-950',
-    },
-    success: {
-      implicitBorder: 'border-success-200-800',
-      explicitBorder: 'border-success-500',
-      implicitBg: 'bg-success-200-800',
-      explicitBg: 'bg-success-500',
-      iconColor: 'text-success-50-950',
-    },
-    warning: {
-      implicitBorder: 'border-warning-200-800',
-      explicitBorder: 'border-warning-500',
-      implicitBg: 'bg-warning-200-800',
-      explicitBg: 'bg-warning-500',
-      iconColor: 'text-warning-50-950',
-    },
-    error: {
-      implicitBorder: 'border-error-200-800',
-      explicitBorder: 'border-error-500',
-      implicitBg: 'bg-error-200-800',
-      explicitBg: 'bg-error-500',
-      iconColor: 'text-error-50-950',
-    },
-    surface: {
-      implicitBorder: 'border-surface-200-800',
-      explicitBorder: 'border-surface-500',
-      implicitBg: 'bg-surface-200-800',
-      explicitBg: 'bg-surface-500',
-      iconColor: 'text-surface-50-950',
-    },
-  };
-
-  const style = styles[theme];
+  function lightDark(prop: string, light: Shade, dark: Shade): string {
+    if (light === dark) {
+      return `${prop}: ${color(light)};`;
+    } else {
+      return `${prop}: light-dark(${color(light)}, ${color(dark)})`;
+    }
+  }
 
   const CurrentIcon = icon;
 </script>
 
-<div
-  class="order-2 flex items-center gap-1 rounded-base border-1 p-0 pr-1 text-xs {implicit
-    ? `border-dashed ${style.implicitBorder}`
-    : style.explicitBorder}"
->
-  <div class="px-1 {implicit ? style.implicitBg : style.explicitBg}">
-    <CurrentIcon class="w-4 {style.iconColor}" aria-hidden="true" />
+<div class={{ tag: true, implicit }} style={lightDark('border-color', 3, 9)}>
+  <div class="icon" style={lightDark('background-color', 3, 9)}>
+    <CurrentIcon aria-hidden="true" style={lightDark('color', 10, 2)} />
   </div>
   <div>
     {@render children()}
   </div>
 </div>
+
+<style>
+  .tag {
+    font-size: var(--font-size-1);
+    display: flex;
+    align-items: center;
+    gap: var(--size-1);
+    border-radius: var(--size-1);
+    border-width: 1px;
+
+    padding-right: var(--size-1);
+
+    &.implicit {
+      border-style: dashed;
+    }
+  }
+
+  .icon {
+    padding: var(--size-1);
+    width: var(--size-5);
+  }
+</style>

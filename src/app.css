@@ -1,10 +1,27 @@
-@import 'tailwindcss';
+@import 'open-props/postcss/normalize';
 
-@import '@skeletonlabs/skeleton';
-@import '@skeletonlabs/skeleton/optional/presets';
-@import '@skeletonlabs/skeleton/themes/cerberus';
+:root {
+  --between-items: var(--size-3);
+  --between-groups: var(--size-6);
 
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+  --box-padding: var(--size-3);
+  --box-radius: var(--size-3);
+}
 
-@source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
+dialog {
+  /* override some browser styles */
+  max-width: unset;
+  max-height: unset;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

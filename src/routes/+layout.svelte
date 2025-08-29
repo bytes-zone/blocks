@@ -22,11 +22,31 @@
 
 <JazzSvelteProvider {sync} AccountSchema={Account}>
   <AuthGate allowAnonymous={demo}>
-    <div class="flex gap-4">
+    <div class="panes">
       <Sidebar />
-      <main class="mx-auto max-w-7xl p-2 lg:min-w-3xl lg:px-8 lg:pt-8">
+      <main>
         {@render children?.()}
       </main>
     </div>
   </AuthGate>
 </JazzSvelteProvider>
+
+<style>
+  .panes {
+    display: flex;
+    flex-direction: row;
+    gap: var(--size-4);
+  }
+
+  main {
+    margin: 0 auto;
+    min-width: var(--size-sm);
+    max-width: var(--size-content-3);
+    padding: var(--size-4);
+
+    @media (--xl-n-above) {
+      min-width: var(--size-lg);
+      padding: var(--size-8) var(--size-8) 0;
+    }
+  }
+</style>

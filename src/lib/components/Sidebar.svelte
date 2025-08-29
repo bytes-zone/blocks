@@ -1,12 +1,14 @@
 <script lang="ts">
   import { Account } from '$lib/schema/account';
-  import { CirclePlus, Grid2x2, House, Icon, Inbox, LogOut } from '@lucide/svelte';
+  import { Grid2x2, House, Inbox, LogOut, Plus } from '@lucide/svelte';
   import { AccountCoState } from 'jazz-tools/svelte';
   import { page } from '$app/state';
   import QuickAdd from './QuickAdd.svelte';
   import AreaForm from './AreaForm.svelte';
   import Grid_2x2Plus from '@lucide/svelte/icons/grid-2x2-plus';
-  import { popover } from '$lib/popover';
+  import SidebarLink from './SidebarLink.svelte';
+  import MenuPopover from './MenuPopover.svelte';
+  import Button from './Button.svelte';
 
   let account = new AccountCoState(Account, {
     resolve: {
@@ -32,106 +34,79 @@
   let addId = `add-${id}`;
 </script>
 
-{#snippet link(
-  url: string,
-  label: string,
-  active: boolean,
-  icon: typeof Icon,
-  iconColor: string,
-  rhs: string = '',
-)}
-  {@const CurrentIcon = icon}
-  <li class="px-4 py-1" class:bg-primary-50-950={active}>
-    <a href={url} class="flex w-full cursor-pointer items-center justify-between">
-      <div class="flex gap-2">
-        <CurrentIcon class="w-5 {iconColor}" aria-hidden="true" />
-        {label}
-      </div>
-      <div class="text-surface-700-300">{rhs}</div>
-    </a>
-  </li>
-{/snippet}
-
-<header
-  class="flex min-h-screen w-xs flex-col border-r border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950"
->
-  <div class="flex grow-1 flex-col gap-6 py-4">
+<header>
+  <div class="menu">
     <nav aria-label="primary">
-      <ol class="flex flex-col gap-2">
-        {@render link('/', 'Home', page.route.id === '/', House, 'text-surface-300-700')}
+      <ol>
+        <SidebarLink
+          href="/"
+          label="Home"
+          active={page.route.id === '/'}
+          icon={House}
+          iconColorDark="--gray-4"
+          iconColorLight="--gray-8"
+        />
 
-        {@render link(
-          '/inbox',
-          'Inbox',
-          page.route.id === '/inbox',
-          Inbox,
-          'text-primary-300-700',
-          root?.inbox && root.inbox.length > 0 ? root.inbox.length.toString() : '',
-        )}
+        <SidebarLink
+          href="/inbox"
+          label="Inbox"
+          active={page.route.id === '/inbox'}
+          icon={Inbox}
+          iconColor="--blue-6"
+          rhs={account.current?.root?.inbox?.length?.toString()}
+        />
       </ol>
     </nav>
 
     <nav aria-label="areas">
-      {#if !root?.areas}
-        <div class="flex flex-col gap-2">
-          {#each { length: 5 }}
-            <div class="mx-2 h-4 placeholder animate-pulse py-1"></div>
-          {/each}
-        </div>
-      {:else}
-        <ol class="flex flex-col gap-4">
+      {#if root?.areas}
+        <ol>
           {#each root.areas.filter((area) => !area.archived) as area (area.$jazz.id)}
-            {@render link(
-              `/area/${area.$jazz.id}`,
-              area.title?.toString(),
-              page.route.id === '/area/[id]' && page.params.id === area.$jazz.id,
-              Grid2x2,
-              'text-surface-300-700',
-              area.projects.length > 0 ? area.projects.length.toString() : '',
-            )}
+            <SidebarLink
+              href={`/area/${area.$jazz.id}`}
+              label={area.title?.toString()}
+              active={page.route.id === '/area/[id]' && page.params.id === area.$jazz.id}
+              icon={Grid2x2}
+              iconColor="--gray-6"
+              rhs={area.projects.length > 0 ? area.projects.length.toString() : ''}
+            />
           {/each}
         </ol>
       {/if}
     </nav>
   </div>
-  <div
-    class="flex shrink-1 items-center justify-between border-t border-gray-200 bg-gray-100 p-4 dark:border-gray-800 dark:bg-gray-900"
-  >
-    <button class="btn-icon btn" popovertarget={addId}>
-      <CirclePlus class="w-4 text-success-500" aria-hidden="true" />
-      <span class="sr-only">New item</span>
-    </button>
+  <div class="actions">
+    <Button popovertarget={addId}>
+      <!-- intent: green -->
+      <Plus aria-hidden="true" />
+      New item
+    </Button>
 
     {#if root && account.isAuthenticated}
-      <button type="button" class="btn-icon btn" onclick={() => account.logOut()}>
+      <Button onclick={() => account.logOut()}>
+        <!-- intent: mid-gray -->
+        <LogOut aria-hidden="true" />
         <span class="sr-only">Log out</span>
-        <LogOut class="text-surface-500" aria-hidden="true" />
-      </button>
+      </Button>
     {:else}
       Not signed in!
     {/if}
   </div>
 </header>
 
-<div id={addId} class="rounded-base" {@attach popover}>
-  <div class="flex flex-col gap-2 p-2">
-    <button class="btn" onclick={() => quickAdd.showModal()}>
-      <Inbox class="w-4 text-success-500" aria-hidden="true" />
-      Quick add
-    </button>
+<MenuPopover id={addId}>
+  <Button onclick={() => quickAdd.showModal()}>
+    <Inbox aria-hidden="true" />
+    Quick add
+  </Button>
 
-    <button class="btn" onclick={() => newArea.showModal()}>
-      <Grid_2x2Plus class="w-4 text-success-500" aria-hidden="true" />
-      Add area
-    </button>
-  </div>
-</div>
+  <Button onclick={() => newArea.showModal()}>
+    <Grid_2x2Plus aria-hidden="true" />
+    Add area
+  </Button>
+</MenuPopover>
 
-<dialog
-  bind:this={quickAdd}
-  closedby="any"
-  class="top-1/2 left-1/2 -translate-1/2 rounded-container"
->
+<dialog bind:this={quickAdd} closedby="any">
   <QuickAdd
     onadd={(task) => {
       if (root?.inbox) root.inbox.$jazz.push(task);
@@ -140,11 +115,7 @@
   />
 </dialog>
 
-<dialog
-  bind:this={newArea}
-  closedby="any"
-  class="top-1/2 left-1/2 -translate-1/2 rounded-container p-4"
->
+<dialog bind:this={newArea} closedby="any">
   <AreaForm
     onsave={(area) => {
       if (root?.areas) root.areas.$jazz.push(area);
@@ -152,3 +123,41 @@
     }}
   />
 </dialog>
+
+<style>
+  header {
+    min-height: 100vh;
+    width: var(--size-xs);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-right: 1px solid light-dark(var(--gray-2), var(--gray-10));
+    background: light-dark(var(--gray-1), var(--gray-11));
+
+    & > .menu {
+      display: flex;
+      flex-direction: column;
+      gap: var(--between-groups);
+      padding-top: var(--size-4);
+    }
+
+    & > .actions {
+      display: flex;
+      justify-content: space-between;
+      background: light-dark(var(--gray-2), var(--gray-10));
+      padding: var(--box-padding);
+    }
+  }
+
+  nav > ol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--between-items);
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>
