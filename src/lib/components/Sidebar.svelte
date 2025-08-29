@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Account } from '$lib/schema/account';
-  import { CirclePlus, Grid2x2, House, Inbox, LogOut } from '@lucide/svelte';
+  import { CirclePlus, Grid2x2, House, Inbox, LogOut, Plus } from '@lucide/svelte';
   import { AccountCoState } from 'jazz-tools/svelte';
   import { page } from '$app/state';
   import QuickAdd from './QuickAdd.svelte';
@@ -8,6 +8,7 @@
   import Grid_2x2Plus from '@lucide/svelte/icons/grid-2x2-plus';
   import SidebarLink from './SidebarLink.svelte';
   import MenuPopover from './MenuPopover.svelte';
+  import Button from './Button.svelte';
 
   let account = new AccountCoState(Account, {
     resolve: {
@@ -74,18 +75,18 @@
     </nav>
   </div>
   <div class="actions">
-    <button popovertarget={addId}>
+    <Button popovertarget={addId}>
       <!-- intent: green -->
-      <CirclePlus aria-hidden="true" />
-      <span class="sr-only">New item</span>
-    </button>
+      <Plus aria-hidden="true" />
+      New item
+    </Button>
 
     {#if root && account.isAuthenticated}
-      <button type="button" onclick={() => account.logOut()}>
+      <Button onclick={() => account.logOut()}>
         <!-- intent: mid-gray -->
         <LogOut aria-hidden="true" />
         <span class="sr-only">Log out</span>
-      </button>
+      </Button>
     {:else}
       Not signed in!
     {/if}
@@ -93,15 +94,15 @@
 </header>
 
 <MenuPopover id={addId}>
-  <button onclick={() => quickAdd.showModal()}>
+  <Button onclick={() => quickAdd.showModal()}>
     <Inbox aria-hidden="true" />
     Quick add
-  </button>
+  </Button>
 
-  <button onclick={() => newArea.showModal()}>
+  <Button onclick={() => newArea.showModal()}>
     <Grid_2x2Plus aria-hidden="true" />
     Add area
-  </button>
+  </Button>
 </MenuPopover>
 
 <dialog bind:this={quickAdd} closedby="any">
