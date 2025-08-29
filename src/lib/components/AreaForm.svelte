@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Area } from '$lib/schema/area';
   import { co, Group } from 'jazz-tools';
+  import FormButton from '$lib/components/FormButton.svelte';
 
   const {
     area,
@@ -49,9 +50,9 @@
     <textarea placeholder="Notes" bind:value={draftNotes}></textarea>
   </label>
 
-  <button class="mt-4 btn w-full preset-filled-primary-500">
+  <FormButton>
     {#if area}Save{:else}Create{/if}
-  </button>
+  </FormButton>
 </form>
 
 <style>
