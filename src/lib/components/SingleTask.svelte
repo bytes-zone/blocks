@@ -8,17 +8,7 @@
 
   let { task }: { task: co.loaded<typeof Task> } = $props();
 
-  let row: HTMLElement;
   let modal: HTMLDialogElement;
-
-  function openEdit() {
-    if (!modal || !row) return;
-
-    modal.showModal();
-    modal.style.left = row.offsetLeft + 'px';
-    modal.style.top = row.offsetTop + 'px';
-    modal.style.width = row.clientWidth + 'px';
-  }
 
   let waitDraft = $state(task.wait?.toLocaleString() || '');
   let dueDraft = $state(task.due?.toLocaleString() || '');
@@ -49,8 +39,8 @@
   });
 </script>
 
-<div class="todo-item flex items-center gap-2 rounded-container px-2 py-1" bind:this={row}>
-  <div class="order-2">
+<div class="todo-item">
+  <div class="title">
     {task.title}
   </div>
 
@@ -59,7 +49,6 @@
     checked={task.completed}
     onchange={(ev) => task.$jazz.set('completed', ev.currentTarget.checked)}
     aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
-    class="order-1"
   />
 
   <Tag icon={Cuboid} theme="primary" implicit={task.plannedBlocks == 0}>
@@ -85,23 +74,31 @@
     </Tag>
   {/if}
 
-  <button class="edit-todo-button" onclick={openEdit}>
+  <button class="edit-todo-button" onclick={() => modal.showModal()}>
     <span class="sr-only">Edit {task.title}</span>
   </button>
 </div>
 
-<dialog
-  bind:this={modal}
-  closedby="any"
-  class="rounded-container backdrop:backdrop-blur-[.5px] backdrop:backdrop-saturate-50"
->
-  <div class="flex flex-col gap-2 px-2 py-1">
-    <div class="flex items-center gap-2">
-      <label class="order-2 label">
-        <span class="sr-only label-text">Title</span>
+<dialog bind:this={modal} closedby="any">
+  <form>
+    <fieldset class="task">
+      <legend class="sr-only">Basic Information</legend>
+      <label>
+        <span class="sr-only">Completed</span>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onchange={(ev) => task.$jazz.set('completed', ev.currentTarget.checked)}
+          aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
+        />
+      </label>
+
+      <label>
+        <span class="sr-only">Title</span>
         <input
           class="input"
           type="text"
+          name="title"
           bind:value={
             () => task.title?.toString(),
             (val) => {
@@ -110,73 +107,79 @@
           }
         />
       </label>
+    </fieldset>
 
-      <input
-        type="checkbox"
-        checked={task.completed}
-        onchange={(ev) => task.$jazz.set('completed', ev.currentTarget.checked)}
-        aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
-        class="order-1"
-      />
-    </div>
-
-    <div class="flex gap-2">
-      <div class="flex flex-col gap-2">
-        <label class="label">
-          <span class="label-text">Planned Blocks</span>
-          <input
-            type="number"
-            class="input"
-            min="0"
-            placeholder="Blocks"
-            value={task.plannedBlocks}
-            onchange={(ev) => task.$jazz.set('plannedBlocks', parseInt(ev.currentTarget.value))}
-          />
-        </label>
-
-        <label class="label">
-          <span class="label-text">Wait</span>
-          <input
-            type="text"
-            class="input"
-            placeholder="Date"
-            bind:value={waitDraft}
-            onblur={parseAndSave(
-              waitDraft,
-              (v) => task.$jazz.set('wait', v),
-              () => (waitDraft = task.wait?.toLocaleString() || ''),
-            )}
-          />
-        </label>
-
-        <label class="label">
-          <span class="label-text">Due</span>
-          <input
-            type="text"
-            class="input"
-            placeholder="Date"
-            bind:value={dueDraft}
-            onblur={parseAndSave(
-              dueDraft,
-              (v) => task.$jazz.set('due', v),
-              () => (dueDraft = task.due?.toLocaleString() || ''),
-            )}
-          />
-        </label>
-      </div>
+    <fieldset class="plan">
+      <label class="label">
+        Planned Blocks
+        <input
+          type="number"
+          class="input"
+          min="0"
+          placeholder="Blocks"
+          value={task.plannedBlocks}
+          onchange={(ev) => task.$jazz.set('plannedBlocks', parseInt(ev.currentTarget.value))}
+        />
+      </label>
 
       <label class="label">
+        Wait
+        <input
+          type="text"
+          class="input"
+          placeholder="Date"
+          bind:value={waitDraft}
+          onblur={parseAndSave(
+            waitDraft,
+            (v) => task.$jazz.set('wait', v),
+            () => (waitDraft = task.wait?.toLocaleString() || ''),
+          )}
+        />
+      </label>
+
+      <label class="label">
+        Due
+        <input
+          type="text"
+          class="input"
+          placeholder="Date"
+          bind:value={dueDraft}
+          onblur={parseAndSave(
+            dueDraft,
+            (v) => task.$jazz.set('due', v),
+            () => (dueDraft = task.due?.toLocaleString() || ''),
+          )}
+        />
+      </label>
+    </fieldset>
+
+    <fieldset class="notes">
+      <label class="label">
         <span class="label-text">Notes</span>
-        <textarea class="textarea h-auto" placeholder="Notes (not saved for now)" value=""
+        <textarea
+          name="notes"
+          class="textarea h-auto"
+          placeholder="Notes (not saved for now)"
+          value=""
         ></textarea>
       </label>
-    </div>
-  </div>
+    </fieldset>
+  </form>
 </dialog>
 
 <style>
   .todo-item {
+    display: flex;
+    align-items: center;
+    gap: var(--between-items);
+    border-radius: var(--box-radius);
+    /*padding: var(--size-2) var(--size-1);*/
+
     position: relative;
+  }
+
+  .title {
+    order: 2;
   }
 
   .todo-item > input {
@@ -184,6 +187,7 @@
   }
 
   .edit-todo-button {
+    background-color: transparent;
     position: absolute;
     top: 0;
     right: 0;
@@ -191,5 +195,53 @@
     height: 100%;
     cursor: pointer;
     z-index: 1;
+  }
+
+  dialog {
+    & > form {
+      display: grid;
+      gap: var(--between-groups);
+      padding: var(--size-2) var(--size-1);
+
+      grid-template:
+        'task task'
+        'plan notes';
+
+      fieldset {
+        padding: 0;
+        border: none;
+
+        display: flex;
+        gap: var(--between-items);
+
+        &.task {
+          grid-area: task;
+          align-items: center;
+        }
+
+        &.plan {
+          grid-area: plan;
+          flex-direction: column;
+        }
+
+        &.notes {
+          grid-area: notes;
+        }
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: var(--size-1);
+      }
+
+      label:has(input[name='title']) {
+        flex-grow: 1;
+      }
+
+      textarea[name='notes'] {
+        height: 100%;
+      }
+    }
   }
 </style>
