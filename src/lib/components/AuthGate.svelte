@@ -1,7 +1,7 @@
 <script lang="ts">
   import { usePasskeyAuth } from 'jazz-tools/svelte';
   import type { Snippet } from 'svelte';
-  import Button from './Button.svelte';
+  import FormButton from './FormButton.svelte';
 
   const { children, allowAnonymous }: { children: Snippet; allowAnonymous: boolean } = $props();
 
@@ -20,7 +20,7 @@
       <h1 class="h1">Hi! 👋</h1>
       <p>Please register or log in to continue.</p>
 
-      <Button onclick={() => current.logIn()}>Log In</Button>
+      <FormButton onclick={() => current.logIn()}>Log In</FormButton>
 
       <p>or</p>
 
@@ -38,7 +38,7 @@
           <input type="email" placeholder="you@youremail.com" bind:value={email} />
         </label>
 
-        <Button type="submit" disabled={!emailIsValid}>Register</Button>
+        <FormButton type="submit" disabled={!emailIsValid}>Register</FormButton>
       </form>
     </div>
   </div>
