@@ -111,6 +111,7 @@
     </fieldset>
 
     <fieldset class="plan">
+      <legend class="sr-only">Planning</legend>
       <label class="label">
         Planned Blocks
         <input
