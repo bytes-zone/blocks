@@ -4,7 +4,6 @@
   import { Archive, ArchiveRestore, Ellipsis } from '@lucide/svelte';
   import Grid_2x2 from '@lucide/svelte/icons/grid-2x2';
   import { CoState } from 'jazz-tools/svelte';
-  import { popover } from '$lib/popover';
   import MenuPopover from '$lib/components/MenuPopover.svelte';
 
   let state = $derived(
