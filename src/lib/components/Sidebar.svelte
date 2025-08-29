@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Account } from '$lib/schema/account';
-  import { CirclePlus, Grid2x2, House, Inbox, LogOut, Plus } from '@lucide/svelte';
+  import { Grid2x2, House, Inbox, LogOut, Plus } from '@lucide/svelte';
   import { AccountCoState } from 'jazz-tools/svelte';
   import { page } from '$app/state';
   import QuickAdd from './QuickAdd.svelte';
