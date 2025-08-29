@@ -49,6 +49,7 @@
     checked={task.completed}
     onchange={(ev) => task.$jazz.set('completed', ev.currentTarget.checked)}
     aria-label="Mark {task.title} {task.completed ? 'incomplete' : 'complete'}"
+    style="order: -1"
   />
 
   <Tag icon={Cuboid} theme="primary" implicit={task.plannedBlocks == 0}>
@@ -176,10 +177,6 @@
     /*padding: var(--size-2) var(--size-1);*/
 
     position: relative;
-  }
-
-  .title {
-    order: 2;
   }
 
   .todo-item > input {
