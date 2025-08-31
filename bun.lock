@@ -22,7 +22,7 @@
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-svelte": "3.11.0",
         "globals": "16.3.0",
-        "jazz-tools": "0.18.1",
+        "jazz-tools": "0.18.2",
         "jiti": "2.5.1",
         "open-props": "1.7.16",
         "playwright": "1.55.0",
@@ -354,13 +354,13 @@
 
     "clsx": ["clsx@2.1.1", "", {}, "sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA=="],
 
-    "cojson": ["cojson@0.18.1", "", { "dependencies": { "@noble/ciphers": "^1.3.0", "@noble/curves": "^1.9.1", "@noble/hashes": "^1.8.0", "@opentelemetry/api": "^1.9.0", "@scure/base": "1.2.1", "cojson-core-wasm": "0.18.1", "neverthrow": "^7.0.1", "unicode-segmenter": "^0.12.0" } }, "sha512-pKvAkLBXmkxlMaO+vNhq2P5/uuxKHRysOTp3XbMkuT4odf2PjI0czAdaeI7EHmTwNv7AhH2tg+kZA8iQHL1ccQ=="],
+    "cojson": ["cojson@0.18.2", "", { "dependencies": { "@noble/ciphers": "^1.3.0", "@noble/curves": "^1.9.1", "@noble/hashes": "^1.8.0", "@opentelemetry/api": "^1.9.0", "@scure/base": "1.2.1", "cojson-core-wasm": "0.18.2", "neverthrow": "^7.0.1", "unicode-segmenter": "^0.12.0" } }, "sha512-MKPquoNVxTwhV9jwVSDc52Bt8kZwPiFmCbQ4DoXrnrt6rPdnrJ1WzTxCU2MMbrD+876lFn36rKwuQDBJ8yC5KQ=="],
 
-    "cojson-core-wasm": ["cojson-core-wasm@0.18.1", "", {}, "sha512-i9lL9E5CucxzHXTLtdq5v4E8c543Bum+CHMSw7GEv/UPp5kV9DsoV/74TsmcCwJlWRBDuTukTDtXnjdcOpMrMA=="],
+    "cojson-core-wasm": ["cojson-core-wasm@0.18.2", "", {}, "sha512-LO7r7qnX8oxwr85RFV3GzZLceXAOZ3QhJB1JvWEIThXrAX5kGEnGboaD+Fk0TvhqYGxYY+jyo1sVTvjvRRHhLQ=="],
 
-    "cojson-storage-indexeddb": ["cojson-storage-indexeddb@0.18.1", "", { "dependencies": { "cojson": "0.18.1" } }, "sha512-PRgXPNAoQJxLafy9J4n72xysFrCaVzL9U9dvuilukvsA+119FDKJtMr8TLEsoByd62dZoKKJ/bVDtrkz4PjAvw=="],
+    "cojson-storage-indexeddb": ["cojson-storage-indexeddb@0.18.2", "", { "dependencies": { "cojson": "0.18.2" } }, "sha512-lPBkfUhW4uBeSRy2XdtAf6d7QDftuyogOswOsECfEL4WoKrVXVWLHOfSPQyL3RfAP6M+JJwX8rOLrDdZpL/8ng=="],
 
-    "cojson-transport-ws": ["cojson-transport-ws@0.18.1", "", { "dependencies": { "@opentelemetry/api": "^1.9.0", "cojson": "0.18.1" } }, "sha512-+6HCyRbQrft9uHIYCX04Go+oyHN0qNQ6gowkWmU3npTv7EcSI+9aRdjZ7uWY12jZyNq/47MJ/l7LnbfgAG6RIg=="],
+    "cojson-transport-ws": ["cojson-transport-ws@0.18.2", "", { "dependencies": { "@opentelemetry/api": "^1.9.0", "cojson": "0.18.2" } }, "sha512-D2EnMV+FRB4i3MXuAkknICVNNNvH2FLTbXkhtIzublAW/1nS+RHLlSDwvrCxWaGyRY0xSvnz6RBHnbHOGESEwQ=="],
 
     "color-convert": ["color-convert@2.0.1", "", { "dependencies": { "color-name": "~1.1.4" } }, "sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ=="],
 
@@ -490,7 +490,7 @@
 
     "isexe": ["isexe@2.0.0", "", {}, "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw=="],
 
-    "jazz-tools": ["jazz-tools@0.18.1", "", { "dependencies": { "@manuscripts/prosemirror-recreate-steps": "^0.1.4", "@scure/base": "1.2.1", "@scure/bip39": "^1.3.0", "@tiptap/core": "^2.12.0", "clsx": "^2.0.0", "cojson": "0.18.1", "cojson-storage-indexeddb": "0.18.1", "cojson-transport-ws": "0.18.1", "fast-myers-diff": "^3.2.0", "goober": "^2.1.16", "prosemirror-example-setup": "^1.2.2", "prosemirror-menu": "^1.2.4", "prosemirror-model": "^1.21.1", "prosemirror-schema-basic": "^1.2.2", "prosemirror-state": "^1.4.3", "prosemirror-transform": "^1.9.0", "zod": "3.25.76" }, "peerDependencies": { "@bam.tech/react-native-image-resizer": "*", "@op-engineering/op-sqlite": "*", "@react-native-community/netinfo": "*", "better-auth": "^1.3.0", "expo-file-system": "*", "expo-secure-store": "*", "expo-sqlite": "*", "react": "*", "react-dom": "*", "react-native": "*", "react-native-fast-encoder": "^0.2.0", "react-native-mmkv": "^3.3.0", "react-native-nitro-modules": "^0.26.4", "react-native-quick-crypto": "^1.0.0-beta.18", "svelte": "^5.0.0" }, "optionalPeers": ["@bam.tech/react-native-image-resizer", "@op-engineering/op-sqlite", "@react-native-community/netinfo", "better-auth", "expo-file-system", "expo-secure-store", "expo-sqlite", "react", "react-dom", "react-native", "react-native-fast-encoder", "react-native-mmkv", "react-native-nitro-modules", "react-native-quick-crypto", "svelte"] }, "sha512-q+k8TBVjjzY065/u6OXJOWOyZN214T5wvziPc31WA3U+WCjqbejAynSydnKEcoSOiAA2OcP5bhvPYyQKYNypdw=="],
+    "jazz-tools": ["jazz-tools@0.18.2", "", { "dependencies": { "@manuscripts/prosemirror-recreate-steps": "^0.1.4", "@scure/base": "1.2.1", "@scure/bip39": "^1.3.0", "@tiptap/core": "^2.12.0", "clsx": "^2.0.0", "cojson": "0.18.2", "cojson-storage-indexeddb": "0.18.2", "cojson-transport-ws": "0.18.2", "fast-myers-diff": "^3.2.0", "goober": "^2.1.16", "prosemirror-example-setup": "^1.2.2", "prosemirror-menu": "^1.2.4", "prosemirror-model": "^1.21.1", "prosemirror-schema-basic": "^1.2.2", "prosemirror-state": "^1.4.3", "prosemirror-transform": "^1.9.0", "zod": "3.25.76" }, "peerDependencies": { "@bam.tech/react-native-image-resizer": "*", "@op-engineering/op-sqlite": "*", "@react-native-community/netinfo": "*", "better-auth": "^1.3.0", "expo-file-system": "*", "expo-secure-store": "*", "expo-sqlite": "*", "react": "*", "react-dom": "*", "react-native": "*", "react-native-fast-encoder": "^0.2.0", "react-native-mmkv": "^3.3.0", "react-native-nitro-modules": "^0.26.4", "react-native-quick-crypto": "^1.0.0-beta.18", "svelte": "^5.0.0" }, "optionalPeers": ["@bam.tech/react-native-image-resizer", "@op-engineering/op-sqlite", "@react-native-community/netinfo", "better-auth", "expo-file-system", "expo-secure-store", "expo-sqlite", "react", "react-dom", "react-native", "react-native-fast-encoder", "react-native-mmkv", "react-native-nitro-modules", "react-native-quick-crypto", "svelte"] }, "sha512-S4XLQLQKWn2RttpA2SO86ACn7hQinbez3xvzXWpX3dilEk0gqv8DpVZijghrsspyMjg9deUQpsaZUWlGFsUg/Q=="],
 
     "jiti": ["jiti@2.5.1", "", { "bin": { "jiti": "lib/jiti-cli.mjs" } }, "sha512-twQoecYPiVA5K/h6SxtORw/Bs3ar+mLUtoPSc7iMXzQzK8d7eJ/R09wmTwAjiamETn1cXYPGfNnu7DMoHgu12w=="],
 
