@@ -40,3 +40,42 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+  container:
+    name: Container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: docker build -t blocks:test .
+
+      - name: run and check
+        run: |
+          docker run -d --name blocks -p 3000:3000 blocks:test
+
+          # Wait for container to be ready (up to 30 seconds)
+          echo "Waiting for container to start..."
+          for i in {1..30}; do
+            if curl -f -s http://localhost:3000 > /dev/null 2>&1; then
+              echo "Container is ready!"
+              break
+            fi
+            echo "Attempt $i/30: Container not ready yet, waiting..."
+            sleep 1
+          done
+
+      - name: health check
+        run: |
+          echo "Checking health..."
+          RESP="$(curl -fs http://localhost:5173/health)"
+          if test "$RESP" != "OK"; then
+            printf "Health check failed! Here's what we got:\n\n%s\n\n" "$RESP"
+            exit 1
+          fi
+          echo "Health check passed!"
+
+      - name: stop container
+        if: always()
+        run: |
+          echo "Stopping Docker container..."
+          docker stop blocks || true
+          docker rm blocks || true
