@@ -16,11 +16,13 @@ RUN pnpm run build
 # Prepare production image
 FROM node:24
 
+ENV NODE_ENV=production
+
 RUN npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml /app/
 WORKDIR /app
-RUN pnpm install
+RUN pnpm install --production
 
 COPY --from=build /app/build /app
 WORKDIR /app
