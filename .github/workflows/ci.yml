@@ -66,7 +66,7 @@ jobs:
       - name: health check
         run: |
           echo "Checking health..."
-          RESP="$(curl -Ss http://localhost:5173/health)"
+          RESP="$(curl -Ss http://localhost:3000/health)"
           if test "$RESP" != "OK"; then
             printf "Health check failed! Here's what we got:\n\n%s\n\n" "$RESP"
             exit 1
