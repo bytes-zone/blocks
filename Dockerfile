@@ -14,7 +14,7 @@ COPY . /app
 RUN pnpm run build
 
 # Prepare production image
-FROM node:24
+FROM node:24 AS run
 
 ENV NODE_ENV=production
 
