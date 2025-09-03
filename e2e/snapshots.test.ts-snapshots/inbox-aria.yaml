@@ -12,9 +12,9 @@
           - textbox "Title": Buy milk
         - group "Planning":
           - text: Planning Planned Blocks
-          - spinbutton "Planned Blocks"
+          - spinbutton "Planned Blocks": "0"
           - textbox "Wait"
-          - textbox "Due": /\d\/\d+\/\d+, \d:\d+:\d+ [AP]M/
+          - textbox "Due": /\d+\/\d+\/\d+, \d+:\d+:\d+ [AP]M/
         - group:
           - text: Notes
           - textbox "Notes"
