@@ -31,10 +31,10 @@ importers:
         version: 1.55.0
       '@sveltejs/adapter-node':
         specifier: 5.3.1
-        version: 5.3.1(@sveltejs/kit@2.37.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))
+        version: 5.3.1(@sveltejs/kit@2.37.1(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))
       '@sveltejs/kit':
-        specifier: 2.37.0
-        version: 2.37.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1))
+        specifier: 2.37.1
+        version: 2.37.1(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1))
       '@sveltejs/vite-plugin-svelte':
         specifier: 6.1.4
         version: 6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1))
@@ -616,8 +616,8 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.4.0
 
-  '@sveltejs/kit@2.37.0':
-    resolution: {integrity: sha512-xgKtpjQ6Ry4mdShd01ht5AODUsW7+K1iValPDq7QX8zI1hWOKREH9GjG8SRCN5tC4K7UXmMhuQam7gbLByVcnw==}
+  '@sveltejs/kit@2.37.1':
+    resolution: {integrity: sha512-4T9rF2Roe7RGvHfcn6+n92Yc2NF88k7ljFz9+wE0jWxyencqRpadr2/CvlcQbbTXf1ozmFxgMO6af+qm+1mPFw==}
     engines: {node: '>=18.13'}
     hasBin: true
     peerDependencies:
@@ -2300,15 +2300,15 @@ snapshots:
     dependencies:
       acorn: 8.15.0
 
-  '@sveltejs/adapter-node@5.3.1(@sveltejs/kit@2.37.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))':
+  '@sveltejs/adapter-node@5.3.1(@sveltejs/kit@2.37.1(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.6(rollup@4.50.0)
       '@rollup/plugin-json': 6.1.0(rollup@4.50.0)
       '@rollup/plugin-node-resolve': 16.0.1(rollup@4.50.0)
-      '@sveltejs/kit': 2.37.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1))
+      '@sveltejs/kit': 2.37.1(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1))
       rollup: 4.50.0
 
-  '@sveltejs/kit@2.37.0(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1))':
+  '@sveltejs/kit@2.37.1(@opentelemetry/api@1.9.0)(@sveltejs/vite-plugin-svelte@6.1.4(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)))(svelte@5.38.7)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1))':
     dependencies:
       '@standard-schema/spec': 1.0.0
       '@sveltejs/acorn-typescript': 1.0.5(acorn@8.15.0)
